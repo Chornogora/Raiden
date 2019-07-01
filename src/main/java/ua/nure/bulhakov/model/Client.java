@@ -8,8 +8,6 @@ public class Client extends Entity {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
-
     private String fullName;
 
     /*
@@ -27,24 +25,12 @@ public class Client extends Entity {
 
     private STATUS status;
 
-    public Client(){
-
-    }
-
     public void setStatus(STATUS status) {
         this.status = status;
     }
 
     public STATUS getStatus(){
         return status;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getFullName() {

@@ -8,10 +8,6 @@ public class Administrator extends Entity {
 
     private String fullName;
 
-    public Administrator(){
-
-    }
-
     public String getLogin(){
         return login;
     }
@@ -27,17 +23,10 @@ public class Administrator extends Entity {
     public String getFullName(){
         return fullName;
     }
+
     @Override
     public String toString(){
         return String.format("Administrator[ id=%d, login=%s, fullName=%s ]", id, login, fullName);
     }
-
-    @Override
-    //TODO test it
-    public int hashCode(){
-        return (int)id;
-    }
-
-
 
 }

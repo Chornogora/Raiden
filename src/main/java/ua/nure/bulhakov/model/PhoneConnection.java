@@ -4,7 +4,7 @@ public class PhoneConnection extends Service {
 
     private static final long serialVersionUID = 1L;
 
-    private int monthPrice;
+    private double monthPrice;
 
     /*
     Time that client can talk with others who use mobile connection
@@ -20,16 +20,16 @@ public class PhoneConnection extends Service {
         this.mobileMinutes = mobileMinutes;
     }
 
-    public int getMonthPrice() {
+    public double getMonthPrice() {
         return monthPrice;
     }
 
-    public void setMonthPrice(int monthPrice) {
+    public void setMonthPrice(double monthPrice) {
         this.monthPrice = monthPrice;
     }
 
     @Override
     public String toString(){
-        return String.format("PhoneConnection[ id=%d, mobileMinutes=%d, monthPrice=%d ]", id, mobileMinutes, monthPrice);
+        return String.format("PhoneConnection[ id=%d, mobileMinutes=%d, monthPrice=%f ]", id, mobileMinutes, monthPrice);
     }
 }

@@ -8,7 +8,7 @@ public class Work extends Service {
 
     private String measure;
 
-    private int price;
+    private double price;
 
     public String getName(){
         return name;
@@ -18,7 +18,7 @@ public class Work extends Service {
         return measure;
     }
 
-    public int getPrice(){
+    public double getPrice(){
         return price;
     }
 
@@ -30,12 +30,12 @@ public class Work extends Service {
         measure = m;
     }
 
-    public void setPrice(int p){
+    public void setPrice(double p){
         price = p;
     }
 
     public String toString(){
-        return String.format("Work[ id=%d, name=%s, measure=%s, price=%d ]", id, name, measure, price);
+        return String.format("Work[ id=%d, name=%s, measure=%s, price=%f ]", id, name, measure, price);
     }
 
 }

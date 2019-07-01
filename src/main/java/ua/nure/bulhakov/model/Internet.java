@@ -9,7 +9,7 @@ public class Internet extends Service {
     */
     private int speed;
 
-    private int monthPrice;
+    private double monthPrice;
 
     public int getSpeed() {
         return speed;
@@ -19,17 +19,17 @@ public class Internet extends Service {
         this.speed = speed;
     }
 
-    public int getMonthPrice() {
+    public double getMonthPrice() {
         return monthPrice;
     }
 
-    public void setMonthPrice(int monthPrice) {
+    public void setMonthPrice(double monthPrice) {
         this.monthPrice = monthPrice;
     }
 
     @Override
     public String toString(){
-        return String.format("Internet[ id=%d, speed=%d, monthPrice=%d", id, speed, monthPrice);
+        return String.format("Internet[ id=%d, speed=%d, monthPrice=%f", id, speed, monthPrice);
     }
 
 }

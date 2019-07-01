@@ -11,7 +11,7 @@ public class Television extends Service {
 
     private String format;
 
-    private int monthPrice;
+    private double monthPrice;
 
     public int getChannels() {
         return channels;
@@ -29,17 +29,17 @@ public class Television extends Service {
         this.format = format;
     }
 
-    public int getMonthPrice() {
+    public double getMonthPrice() {
         return monthPrice;
     }
 
-    public void setMonthPrice(int monthPrice) {
+    public void setMonthPrice(double monthPrice) {
         this.monthPrice = monthPrice;
     }
 
     @Override
     public String toString(){
-        return String.format("Television[ id=%d, channels=%d, format=%s, monthPrice=%d", id, channels, format, monthPrice);
+        return String.format("Television[ id=%d, channels=%d, format=%s, monthPrice=%f", id, channels, format, monthPrice);
     }
 
 }
