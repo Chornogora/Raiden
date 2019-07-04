@@ -1,4 +1,4 @@
-package ua.nure.bulhakov.model;
+package ua.nure.bulhakov.summary.model;
 
 public class Work extends Service {
 

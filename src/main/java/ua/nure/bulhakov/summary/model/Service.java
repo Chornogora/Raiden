@@ -1,4 +1,4 @@
-package ua.nure.bulhakov.model;
+package ua.nure.bulhakov.summary.model;
 
 public abstract class Service extends Entity {
 

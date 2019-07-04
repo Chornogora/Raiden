@@ -3,6 +3,7 @@ create table clients
   client_id serial
     constraint clients_pk
       primary key,
+  client_password varchar not null,
   client_fullname varchar not null,
   client_password_series VARCHAR(2),
   client_password_number int not null,
@@ -18,6 +19,7 @@ create table administrators
     constraint administrators_pk
       primary key,
   administrator_login VARCHAR(20) not null,
+  administrator_password VARCHAR not null,
   administrator_fullname VARCHAR not null
 );
 

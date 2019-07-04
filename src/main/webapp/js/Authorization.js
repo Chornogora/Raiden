@@ -7,5 +7,7 @@ function directToSubmit(){
 }
 
 function authorize(){
-    alert("!!!");
+    CryptoJS.MD5()
+
+    /administrator/authorization
 }
