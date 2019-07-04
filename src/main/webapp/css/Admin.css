@@ -1,0 +1,83 @@
+body{
+    background-color:antiquewhite;
+}
+
+#panel{
+    position: absolute;
+    width: 70%;
+    height: 12%;
+    left: 15%;
+    background: linear-gradient(0deg, lightgrey, white);
+    border: 2px;
+    border-radius: 0 0 20px 20px;
+}
+
+.page{
+    width: 15%;
+    position:relative;
+    top:30%;
+    font-size: 150%;
+    height:60%;
+    left:4%;
+
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+}
+
+.page:hover {
+    background: rgb(53, 167, 110);
+}
+
+.page:active {
+    background: rgb(33,147,90);
+    box-shadow: 0 3px rgb(33,147,90) inset;
+}
+
+#exit{
+    position: relative;
+    display: inline-block;
+    width: 10em;
+    height: 2.5em;
+    line-height: 2.5em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #777;
+    color: #fff;
+    outline: none;
+    border: 2px solid #F64C2B;
+    border-radius: 5px;
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+    background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
+
+    left: 90%;
+    top: 5%;
+}
+
+#exit:active{
+    box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+
+#workplace{
+    position: absolute;
+    width: 50%;
+    left: 5%;
+    top: 20%;
+    height: 70%;
+    border: 2px solid darkblue;
+}
+
+#addition{
+    position: absolute;
+    width: 30%;
+    left: 60%;
+    top: 20%;
+    height: 70%;
+    border: 2px solid darkblue;
+}

@@ -8,6 +8,8 @@ public class Client extends Entity {
 
     private static final long serialVersionUID = 1L;
 
+    private String password;
+
     private String fullName;
 
     /*
@@ -81,6 +83,14 @@ public class Client extends Entity {
     public void setAccount(double account) {
         this.account = account;
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

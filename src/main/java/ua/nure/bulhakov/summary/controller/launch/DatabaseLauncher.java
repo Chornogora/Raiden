@@ -28,7 +28,7 @@ class DatabaseLauncher implements Launcher{
         Properties props = new Properties();
 
         try {
-            props.load(new FileReader(root+"WEB-INF/database.properties"));
+            props.load(new FileReader(root+"/WEB-INF/database.properties"));
         }catch(FileNotFoundException e){
             throw new LaunchException("Can't find file 'database.properties'", e);
         }catch(IOException e){

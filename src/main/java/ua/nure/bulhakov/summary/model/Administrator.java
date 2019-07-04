@@ -6,6 +6,8 @@ public class Administrator extends Entity {
 
     private String login;
 
+    private String password;
+
     private String fullName;
 
     public String getLogin(){
@@ -29,4 +31,11 @@ public class Administrator extends Entity {
         return String.format("Administrator[ id=%d, login=%s, fullName=%s ]", id, login, fullName);
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

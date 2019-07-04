@@ -1,4 +1,4 @@
-package ua.nure.bulhakov.summary.database;
+package ua.nure.bulhakov.summary.service.administrator;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -32,6 +32,6 @@ public class Encoder {
     }
 
     public boolean compare(String message, String codedMessage){
-        return message.equals(encode(codedMessage));
+        return codedMessage.equals(encode(message));
     }
 }

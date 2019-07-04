@@ -3,8 +3,9 @@ package ua.nure.bulhakov.summary.database;
 import java.sql.*;
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.model.Administrator;
+import ua.nure.bulhakov.summary.service.administrator.Encoder;
 
-public class AdministratorDatabaseManager extends DatabaseManager implements Authenticable{
+public class AdministratorDatabaseManager extends DatabaseManager {
 
     private static final Logger logger = Logger.getLogger(AdministratorDatabaseManager.class);
 
@@ -22,11 +23,11 @@ public class AdministratorDatabaseManager extends DatabaseManager implements Aut
         return instance;
     }
 
-    @Override
-    public STATUS authenticate(String login, String password) throws DBException{
+    public Administrator findByLogin(String login) throws DBException{
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet set = null;
+        Administrator result = null;
 
         try{
             Class.forName(driverName);
@@ -36,16 +37,17 @@ public class AdministratorDatabaseManager extends DatabaseManager implements Aut
             set = statement.executeQuery();
 
             //if there isn't administrator with such login
-            if(!set.next()){
-                return STATUS.UNDEFINED;
+            if(set.next()){
+                result = new Administrator();
+                result.setId(set.getInt("administrator_id"));
+                result.setFullName(set.getString("administrator_fullname"));
+                result.setLogin(set.getString("administrator_login"));
+                result.setPassword(set.getString("administrator_password"));
             }
 
-            String encodedPassword = set.getString("administrator_password");
-            return(Encoder.getInstance().compare(password, encodedPassword)) ? STATUS.TRUE : STATUS.FALSE;
-
         }catch(SQLException e){
-            logger.error("Error in authenticating administrator", e);
-            throw new DBException("Error in authenticating administrator", e);
+            logger.error("Error during getting administrator", e);
+            throw new DBException("Error during getting administrator", e);
         }catch(ClassNotFoundException e){
             logger.error("JDBC driver not found", e);
             throw new DBException("JDBC driver not found", e);
@@ -58,9 +60,11 @@ public class AdministratorDatabaseManager extends DatabaseManager implements Aut
                 //Impossible to do something;
             }
         }
+
+        return result;
     }
 
-    public void insert(Administrator administrator, String password) throws DBException{
+    public void insert(Administrator administrator) throws DBException{
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -69,7 +73,7 @@ public class AdministratorDatabaseManager extends DatabaseManager implements Aut
             connection = DriverManager.getConnection(connectionString, CLASS_LEVEL.BOSS.getLogin(), CLASS_LEVEL.BOSS.getPassword());
             statement = connection.prepareStatement(INSERT);
             statement.setString(1, administrator.getLogin());
-            statement.setString(2, Encoder.getInstance().encode(password));
+            statement.setString(2, administrator.getPassword());
             statement.setString(3, administrator.getFullName());
             statement.execute();
 
