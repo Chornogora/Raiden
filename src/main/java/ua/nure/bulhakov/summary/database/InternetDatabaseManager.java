@@ -3,16 +3,19 @@ package ua.nure.bulhakov.summary.database;
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.model.Internet;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InternetDatabaseManager extends ServiceDatabaseManager {
 
     private static final Logger logger = Logger.getLogger(InternetDatabaseManager.class);
 
     private static final String INSERT = "INSERT INTO internet VALUES(?, ?, ?)";
+
+    private static final String SELECT_ALL =
+            "SELECT internet.service_id AS service_id, internet_speed, internet_month_price, service_name FROM internet, services" +
+                    " WHERE internet.service_id = services.service_id ";
 
     private static InternetDatabaseManager instance;
 
@@ -25,6 +28,42 @@ public class InternetDatabaseManager extends ServiceDatabaseManager {
             instance = new InternetDatabaseManager();
         }
         return instance;
+    }
+
+    public List<Internet> findAll() throws DBException{
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet set = null;
+        List<Internet> result = new ArrayList<>();
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            statement = connection.createStatement();
+            set = statement.executeQuery(SELECT_ALL);
+
+            while(set.next()){
+                Internet inet = new Internet();
+                inet.setId(set.getInt("service_id"));
+                inet.setName(set.getString("service_name"));
+                inet.setMonthPrice(set.getDouble("internet_month_price"));
+                inet.setSpeed(set.getInt("internet_speed"));
+
+                result.add(inet);
+            }
+
+            return result;
+        }catch(SQLException e){
+            logger.error("Error in getting internet tariffs", e);
+            throw new DBException("Error in getting internet tariffs", e);
+        }finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+                closeResultSet(set);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
     }
 
     public void insert(Internet inet) throws DBException {

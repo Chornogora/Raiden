@@ -17,7 +17,7 @@
         </div>
         <button id="exit">Log out</button>
 
-        <iframe id="workplace"></iframe>
+        <iframe id="workplace" src="/Raiden_war/administrator/internet"></iframe>
         <iframe id="addition" src="InternetAdding.html" scrolling="no"></iframe>
     </body>
 </html>

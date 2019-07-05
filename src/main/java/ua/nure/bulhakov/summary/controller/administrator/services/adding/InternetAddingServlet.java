@@ -1,4 +1,4 @@
-package ua.nure.bulhakov.summary.controller.administrator.adding;
+package ua.nure.bulhakov.summary.controller.administrator.services.adding;
 
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.DBException;
