@@ -29,7 +29,7 @@ public class Internet extends Service {
 
     @Override
     public String toString(){
-        return String.format("Internet[ id=%d, speed=%d, monthPrice=%f", id, speed, monthPrice);
+        return String.format("Internet[ id=%d, speed=%d, monthPrice=%f ]", id, speed, monthPrice);
     }
 
 }

@@ -2,11 +2,13 @@ package ua.nure.bulhakov.summary.controller.launch;
 
 import ua.nure.bulhakov.summary.database.DatabaseManager;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 class DatabaseLauncher implements Launcher{
@@ -17,7 +19,7 @@ class DatabaseLauncher implements Launcher{
 
     }
 
-    public static DatabaseLauncher getInstance(){
+    static DatabaseLauncher getInstance(){
         if(instance == null){
             instance = new DatabaseLauncher();
         }
@@ -35,19 +37,16 @@ class DatabaseLauncher implements Launcher{
             throw new LaunchException("Can't generate properties using 'database.properties'", e);
         }
 
-        DatabaseManager.setConnectionString(props.getProperty("connectionString"));
-
-        Map<DatabaseManager.CLASS_LEVEL, String> logins = new HashMap<>();
-        logins.put(DatabaseManager.CLASS_LEVEL.CLIENT, props.getProperty("clientLogin"));
-        logins.put(DatabaseManager.CLASS_LEVEL.ADMINISTRATOR, props.getProperty("administratorLogin"));
-        logins.put(DatabaseManager.CLASS_LEVEL.BOSS, props.getProperty("bossLogin"));
-        DatabaseManager.setLoginMap(logins);
-
-        Map<DatabaseManager.CLASS_LEVEL, String> passwords = new HashMap<>();
-        passwords.put(DatabaseManager.CLASS_LEVEL.CLIENT, props.getProperty("clientPassword"));
-        passwords.put(DatabaseManager.CLASS_LEVEL.ADMINISTRATOR, props.getProperty("administratorPassword"));
-        passwords.put(DatabaseManager.CLASS_LEVEL.BOSS, props.getProperty("bossPassword"));
-        DatabaseManager.setPasswordMap(passwords);
+        try {
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            DataSource clientSource = (DataSource) envContext.lookup("jdbc/client");
+            DatabaseManager.setClientSource(clientSource);
+            DataSource adminSource = (DataSource) envContext.lookup("jdbc/admin");
+            DatabaseManager.setAdminSource(adminSource);
+        } catch (NamingException ex) {
+            throw new LaunchException("Can't configurate connection pool", ex);
+        }
     }
 
 }

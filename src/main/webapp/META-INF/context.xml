@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <Resource name="jdbc/client" auth="Container" type="javax.sql.DataSource"
+              username="client"
+              password="clientPass"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/raidendb"
+              maxTotal="60"
+              maxIdle="20"
+              validationQuery="select 1" />
+
+    <Resource name="jdbc/admin" auth="Container" type="javax.sql.DataSource"
+              username="admin"
+              password="adminPass"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/raidendb"
+              maxTotal="60"
+              maxIdle="20"
+              validationQuery="select 1" />
+</Context>

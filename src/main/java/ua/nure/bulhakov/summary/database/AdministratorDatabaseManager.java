@@ -3,7 +3,6 @@ package ua.nure.bulhakov.summary.database;
 import java.sql.*;
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.model.Administrator;
-import ua.nure.bulhakov.summary.service.administrator.Encoder;
 
 public class AdministratorDatabaseManager extends DatabaseManager {
 
@@ -15,6 +14,10 @@ public class AdministratorDatabaseManager extends DatabaseManager {
     private static final String DELETE = "DELETE FROM administrators WHERE administrator_id = ?";
 
     private static AdministratorDatabaseManager instance;
+
+    private AdministratorDatabaseManager(){
+
+    }
 
     public static AdministratorDatabaseManager getInstance(){
         if(instance == null){
@@ -30,8 +33,7 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         Administrator result = null;
 
         try{
-            Class.forName(driverName);
-            connection = DriverManager.getConnection(connectionString, CLASS_LEVEL.ADMINISTRATOR.getLogin(), CLASS_LEVEL.ADMINISTRATOR.getPassword());
+            connection = ROLES.ADMINISTRATOR.getConnection();
             statement = connection.prepareStatement(SELECT_ONE);
             statement.setString(1, login);
             set = statement.executeQuery();
@@ -48,9 +50,6 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         }catch(SQLException e){
             logger.error("Error during getting administrator", e);
             throw new DBException("Error during getting administrator", e);
-        }catch(ClassNotFoundException e){
-            logger.error("JDBC driver not found", e);
-            throw new DBException("JDBC driver not found", e);
         }finally{
             try {
                 closeConnection(connection);
@@ -69,8 +68,7 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         PreparedStatement statement = null;
 
         try{
-            Class.forName(driverName);
-            connection = DriverManager.getConnection(connectionString, CLASS_LEVEL.BOSS.getLogin(), CLASS_LEVEL.BOSS.getPassword());
+            connection = ROLES.BOSS.getConnection();
             statement = connection.prepareStatement(INSERT);
             statement.setString(1, administrator.getLogin());
             statement.setString(2, administrator.getPassword());
@@ -81,9 +79,6 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         }catch(SQLException e){
             logger.error("Error in creating administrator", e);
             throw new DBException("Error in creating administrator", e);
-        }catch(ClassNotFoundException e){
-            logger.error("JDBC driver not found", e);
-            throw new DBException("JDBC driver not found", e);
         }finally{
             try {
                 closeConnection(connection);
@@ -99,8 +94,7 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         PreparedStatement statement = null;
 
         try{
-            Class.forName(driverName);
-            connection = DriverManager.getConnection(connectionString, CLASS_LEVEL.BOSS.getLogin(), CLASS_LEVEL.BOSS.getPassword());
+            connection = ROLES.BOSS.getConnection();
             statement = connection.prepareStatement(DELETE);
             statement.setInt(1, id);
             statement.execute();
@@ -109,9 +103,6 @@ public class AdministratorDatabaseManager extends DatabaseManager {
         }catch(SQLException e){
             logger.error("Error in deleting administrator", e);
             throw new DBException("Error in deleting administrator", e);
-        }catch(ClassNotFoundException e){
-            logger.error("JDBC driver not found", e);
-            throw new DBException("JDBC driver not found", e);
         }finally{
             try {
                 closeConnection(connection);

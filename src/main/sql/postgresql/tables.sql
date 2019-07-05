@@ -45,7 +45,8 @@ create table services
 (
   service_id serial
     constraint services_pk
-      primary key
+      primary key,
+  service_name varchar not null
 );
 
 create table internet

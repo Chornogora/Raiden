@@ -1,41 +1,32 @@
 package ua.nure.bulhakov.summary.database;
 
+import javax.sql.DataSource;
 import java.sql.*;
-import java.util.Map;
 
 public abstract class DatabaseManager {
 
-    // TODO initialize into launcher
-    static String connectionString;
+    private static DataSource clientSource;
 
-    static final String driverName = "org.postgresql.Driver";
+    private static DataSource adminSource;
 
-    static Map<CLASS_LEVEL, String> loginMap;
-
-    static Map<CLASS_LEVEL, String> passwordMap;
-
-    public enum CLASS_LEVEL{
+    public enum ROLES{
         CLIENT, ADMINISTRATOR, BOSS;
 
-        String getLogin(){
-            return loginMap.get(this);
+        protected Connection getConnection() throws SQLException{
+            switch(this){
+                case CLIENT: return clientSource.getConnection();
+                case ADMINISTRATOR: return adminSource.getConnection();
+                default: return clientSource.getConnection();
+            }
         }
-
-        String getPassword(){
-            return passwordMap.get(this);
-        }
     }
 
-    public static void setConnectionString(String str){
-        connectionString = str;
+    public static void setClientSource(DataSource clientSource) {
+        DatabaseManager.clientSource = clientSource;
     }
 
-    public static void setLoginMap(Map<CLASS_LEVEL, String> map){
-        loginMap = map;
-    }
-
-    public static void setPasswordMap(Map<CLASS_LEVEL, String> map){
-        passwordMap = map;
+    public static void setAdminSource(DataSource adminSource) {
+        DatabaseManager.adminSource = adminSource;
     }
 
     void closeConnection(Connection conn) throws SQLException {

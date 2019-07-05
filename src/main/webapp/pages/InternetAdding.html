@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Internet</title>
+        <script src="/Raiden_war/js/InternetAdding.js"></script>
+        <link rel="stylesheet" href="/Raiden_war/css/Adding.css"/>
+    </head>
+    <body>
+
+        <header>
+            <span class="pageTitle">Adding Internet Tariff</span>
+            <hr class="line" size="3" color="brown"/>
+        </header>
+
+
+        <form method="POST" action="/Raiden_war/administrator/internet/adding">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                </tr>
+                <br/>
+                <tr>
+                    <td>Speed(Mb):</td>
+                    <td>
+                        <input type="number" id="speed" name="speed" onchange="checkValue()"/>
+                    </td>
+                </tr>
+                <br/>
+                    <tr>
+                        <td>Price per month:</td>
+                        <td><input type="number" id="price" name="price" onchange="checkValue()"/></td>
+                    </tr>
+            </table>
+            <input type="submit" value="Add" id="submit"/>
+        </form>
+    </body>
+</html>

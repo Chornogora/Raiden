@@ -18,6 +18,6 @@
         <button id="exit">Log out</button>
 
         <iframe id="workplace"></iframe>
-        <iframe id="addition"></iframe>
+        <iframe id="addition" src="InternetAdding.html" scrolling="no"></iframe>
     </body>
 </html>

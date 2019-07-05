@@ -4,15 +4,9 @@ public class Work extends Service {
 
     private static final long serialVersionUID = 1L;
 
-    private String name;
-
     private String measure;
 
     private double price;
-
-    public String getName(){
-        return name;
-    }
 
     public String getMeasure(){
         return measure;
@@ -20,10 +14,6 @@ public class Work extends Service {
 
     public double getPrice(){
         return price;
-    }
-
-    public void setName(String n){
-        name = n;
     }
 
     public void setMeasure(String m){
