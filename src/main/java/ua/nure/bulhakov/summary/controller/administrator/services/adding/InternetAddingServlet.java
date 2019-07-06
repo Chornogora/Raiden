@@ -5,6 +5,7 @@ import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Internet;
 import ua.nure.bulhakov.summary.service.administrator.ServiceAdder;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class InternetAddingServlet extends HttpServlet {
     private final Logger logger = Logger.getLogger(InternetAddingServlet.class);
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String speed = request.getParameter("speed");
         String price = request.getParameter("price");
@@ -29,8 +30,9 @@ public class InternetAddingServlet extends HttpServlet {
 
         try {
             new ServiceAdder().addInternet(inet);
+            request.getRequestDispatcher("/pages/Administrator/Success.html").forward(request, response);
         }catch(DBException e){
-            logger.error("Can't add internet", e);
+            logger.error("Can't add internet");
             response.sendError(500);
         }
     }

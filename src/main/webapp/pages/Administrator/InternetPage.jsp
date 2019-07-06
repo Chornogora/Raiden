@@ -16,7 +16,7 @@
                 <th>Delete</th>
             </tr>
             <c:forEach var="inet" items="${requestScope.list}">
-                <tr>
+                <tr id="${inet.id}">
                     <td>${inet.name}</td>
                     <td>${inet.speed}</td>
                     <td>${inet.monthPrice}</td>

@@ -22,7 +22,7 @@
                 </button>
             </a>
             <a target="addition" href="PhoneAdding.html">
-                <button class="page" onclick="document.getElementById('workplace').src='PhonePage.jsp'">
+                <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/phone'">
                     Telephony
                 </button>
             </a>
