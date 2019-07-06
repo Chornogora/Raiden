@@ -16,6 +16,9 @@ public class TelevisionDatabaseManager extends ServiceDatabaseManager {
     private static final String SELECT_ALL =
             "SELECT television.service_id AS service_id, service_name, television_channels, television_format, television_month_price FROM television, services" +
                     " WHERE television.service_id = services.service_id ";
+    private static final String UPDATE = "UPDATE television SET television_channels=?, television_format = ?, " +
+            "television_month_price=? WHERE service_id=?";
+    private static final String DELETE = "DELETE FROM television WHERE service_id=?";
 
     private static TelevisionDatabaseManager instance;
 
@@ -88,6 +91,66 @@ public class TelevisionDatabaseManager extends ServiceDatabaseManager {
         } catch (SQLException e) {
             logger.error("Error in creating television tariff", e);
             throw new DBException("Error in creating television tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public void update(Television television) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            updateService(connection, television.getName(), television.getId());
+            statement = connection.prepareStatement(UPDATE);
+            statement.setInt(1, television.getChannels());
+            statement.setString(2, television.getFormat());
+            statement.setDouble(3, television.getMonthPrice());
+            statement.setInt(4, television.getId());
+            statement.execute();
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in updating television tariff", e);
+            throw new DBException("Error in updating television tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public void delete(int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            statement = connection.prepareStatement(DELETE);
+            statement.setInt(1, id);
+            statement.execute();
+
+            deleteService(connection, id);
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in deleting television tariff", e);
+            throw new DBException("Error in deleting television tariff", e);
         } finally {
             try {
                 closeConnection(connection);

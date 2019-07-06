@@ -16,6 +16,8 @@ public class PhoneConnectionDatabaseManager extends ServiceDatabaseManager {
     private static final String SELECT_ALL =
             "SELECT phone_connection.service_id AS service_id, service_name, phone_connection_month_price, phone_connection_mobile_minutes FROM phone_connection, services" +
                     " WHERE phone_connection.service_id = services.service_id ";
+    private static final String UPDATE = "UPDATE phone_connection SET phone_connection_month_price=?, phone_connection_mobile_minutes=? WHERE service_id=?";
+    private static final String DELETE = "DELETE FROM phone_connection WHERE service_id=?";
 
     private static PhoneConnectionDatabaseManager instance;
 
@@ -96,4 +98,62 @@ public class PhoneConnectionDatabaseManager extends ServiceDatabaseManager {
         }
     }
 
+    public void update(PhoneConnection phone) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            updateService(connection, phone.getName(), phone.getId());
+            statement = connection.prepareStatement(UPDATE);
+            statement.setDouble(1, phone.getMonthPrice());
+            statement.setInt(2, phone.getMobileMinutes());
+            statement.setInt(3, phone.getId());
+            statement.execute();
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in updating phone connection tariff", e);
+            throw new DBException("Error in updating phone connection tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public void delete(int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            statement = connection.prepareStatement(DELETE);
+            statement.setInt(1, id);
+            statement.execute();
+
+            deleteService(connection, id);
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in deleting phone connection tariff", e);
+            throw new DBException("Error in deleting phone connection tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
 }

@@ -147,8 +147,8 @@ public class InternetDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
-            logger.error("Error in updating internet tariff", e);
-            throw new DBException("Error in updating internet tariff", e);
+            logger.error("Error in deleting internet tariff", e);
+            throw new DBException("Error in deleting internet tariff", e);
         } finally {
             try {
                 closeConnection(connection);

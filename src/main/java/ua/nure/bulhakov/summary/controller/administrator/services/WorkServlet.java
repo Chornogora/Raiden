@@ -2,6 +2,7 @@ package ua.nure.bulhakov.summary.controller.administrator.services;
 
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Work;
+import ua.nure.bulhakov.summary.service.administrator.ServiceDropper;
 import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,22 @@ public class WorkServlet extends HttpServlet {
             List<Work> lst = new ServiceGetter().getWorks();
             request.setAttribute("list", lst);
             request.getRequestDispatcher("/pages/Administrator/ServicePage.jsp").forward(request, response);
+        }catch(DBException e){
+            response.sendError(500);
+        }
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = -1;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        }catch(NumberFormatException e){
+            response.sendError(500);
+        }
+
+        try{
+            new ServiceDropper().DropWork(id);
         }catch(DBException e){
             response.sendError(500);
         }
