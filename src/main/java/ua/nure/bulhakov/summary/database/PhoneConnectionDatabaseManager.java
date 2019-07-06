@@ -53,8 +53,8 @@ public class PhoneConnectionDatabaseManager extends ServiceDatabaseManager {
 
             return result;
         }catch(SQLException e){
-            logger.error("Error in getting internet tariffs", e);
-            throw new DBException("Error in getting internet tariffs", e);
+            logger.error("Error in getting phone connection tariffs", e);
+            throw new DBException("Error in getting phone connection tariffs", e);
         }finally {
             try {
                 closeConnection(connection);

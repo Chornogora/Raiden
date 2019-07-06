@@ -2,7 +2,7 @@ package ua.nure.bulhakov.summary.controller.administrator.services.adding;
 
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.model.Television;
+import ua.nure.bulhakov.summary.model.Work;
 import ua.nure.bulhakov.summary.service.administrator.ServiceAdder;
 
 import javax.servlet.ServletException;
@@ -12,34 +12,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/administrator/television/adding")
-public class TelevisionAddingServlet extends HttpServlet {
+@WebServlet("/administrator/service/adding")
+public class WorkAddingServlet extends HttpServlet {
 
-    private static final Logger logger = Logger.getLogger(TelevisionAddingServlet.class);
+    private static final Logger logger = Logger.getLogger(WorkAddingServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String name = req.getParameter("name");
-        String format = req.getParameter("format");
-        int channels = 0;
+        String measure = req.getParameter("measure");
         double price = 0D;
         try {
-            channels = Integer.parseInt(req.getParameter("channels"));
             price = Double.parseDouble(req.getParameter("price"));
         }catch(NumberFormatException e){
             logger.error("Bad request while adding PhoneConnection");
             resp.sendError(400);
         }
 
-        Television television = new Television();
-        television.setName(name);
-        television.setFormat(format);
-        television.setChannels(channels);
-        television.setMonthPrice(price);
+        Work work = new Work();
+        work.setName(name);
+        work.setPrice(price);
+        work.setMeasure(measure);
 
         try {
-            new ServiceAdder().addTelevision(television);
+            new ServiceAdder().addWork(work);
             req.getRequestDispatcher("/pages/Administrator/Success.html").forward(req, resp);
         }catch(DBException e){
             resp.sendError(500);

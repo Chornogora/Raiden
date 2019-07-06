@@ -90,9 +90,8 @@ create table work
       primary key
     constraint work_services_service_id_fk
       references services,
-  name varchar not null,
-  measure varchar not null,
-  price numeric not null
+  work_measure varchar not null,
+  work_price numeric not null
 );
 
 create table payments

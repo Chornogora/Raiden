@@ -1,8 +1,6 @@
 package ua.nure.bulhakov.summary.service.administrator;
 
-import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.database.InternetDatabaseManager;
-import ua.nure.bulhakov.summary.database.PhoneConnectionDatabaseManager;
+import ua.nure.bulhakov.summary.database.*;
 import ua.nure.bulhakov.summary.model.Internet;
 import ua.nure.bulhakov.summary.model.PhoneConnection;
 import ua.nure.bulhakov.summary.model.Television;
@@ -19,11 +17,11 @@ public class ServiceAdder {
     }
 
     public void addTelevision(Television tel) throws DBException {
-        //InternetDatabaseManager.getInstance().insert(inet);
+        TelevisionDatabaseManager.getInstance().insert(tel);
     }
 
     public void addWork(Work work) throws DBException {
-       // InternetDatabaseManager.getInstance().insert(inet);
+       WorkDatabaseManager.getInstance().insert(work);
     }
 
 }

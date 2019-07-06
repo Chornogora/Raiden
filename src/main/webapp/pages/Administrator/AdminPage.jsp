@@ -17,7 +17,7 @@
                 </button>
             </a>
             <a target="addition" href="TelevisionAdding.html">
-                <button class="page" onclick="document.getElementById('workplace').src='TelevisionPage.jsp'">
+                <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/television'">
                     Television
                 </button>
             </a>
@@ -27,7 +27,7 @@
                 </button>
             </a>
                  <a target="addition" href="ServiceAdding.html">
-                     <button class="page" onclick="document.getElementById('workplace').src='ServicePage.jsp'">
+                     <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/service'">
                          Services
                      </button>
                  </a>
