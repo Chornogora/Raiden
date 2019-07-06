@@ -30,7 +30,7 @@ public class AuthorizationServlet extends HttpServlet {
                     break;
                 case TRUE:
                     logger.trace("Admin authorized: " + login);
-                    request.getSession().setAttribute("login", login);
+                    request.getSession().setAttribute("admin", login);
                     response.setStatus(200);
                     break;
                 default: response.setStatus(400);

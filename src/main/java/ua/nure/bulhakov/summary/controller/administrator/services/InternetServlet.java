@@ -20,7 +20,7 @@ public class InternetServlet extends HttpServlet {
         try {
             List<Internet> lst = new ServiceGetter().getInternet();
             request.setAttribute("list", lst);
-            request.getRequestDispatcher("/pages/InternetPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/pages/Administrator/InternetPage.jsp").forward(request, response);
         }catch(DBException e){
             response.sendError(500);
         }

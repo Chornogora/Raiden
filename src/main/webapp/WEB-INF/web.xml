@@ -5,13 +5,13 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <filter-mapping>
+    <filter-name>AdminAuthorizationFilter</filter-name>
+    <url-pattern>/pages/Administrator/*</url-pattern>
+  </filter-mapping>
+
   <welcome-file-list>
-    <welcome-file>pages/AdminAuthorization.html</welcome-file>
+    <welcome-file>pages/Administrator/AdminAuthorization.html</welcome-file>
   </welcome-file-list>
-
-  <!--<context-param>
-    <param-name>log4j-config-location</param-name>
-    <param-value>WEB-INF/log4j.properties</param-value>
-  </context-param>-->
-
+  
 </web-app>

@@ -16,7 +16,7 @@ function authorize(){
     request.onload = ()=>{
         switch(request.status){
             case 200:
-                location.href="pages/AdminPage.jsp";
+                location.href="/Raiden_war/pages/Administrator/AdminPage.jsp";
                 break;
             default: alert(request.status);
         }
