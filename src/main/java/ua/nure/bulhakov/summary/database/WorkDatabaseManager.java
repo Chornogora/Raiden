@@ -11,7 +11,7 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
 
     private static final Logger logger = Logger.getLogger(WorkDatabaseManager.class);
 
-    private static final String INSERT = "INSERT INTO television VALUES(?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO work VALUES(?, ?, ?)";
 
     private static final String SELECT_ALL =
             "SELECT work.service_id AS service_id, service_name, work_measure, work_price FROM work, services" +
@@ -44,6 +44,7 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
             while(set.next()){
                 Work work = new Work();
                 work.setId(set.getInt("service_id"));
+                work.setName(set.getString("service_name"));
                 work.setMeasure(set.getString("work_measure"));
                 work.setPrice(set.getDouble("work_price"));
 
@@ -52,8 +53,8 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
 
             return result;
         }catch(SQLException e){
-            logger.error("Error in getting internet tariffs", e);
-            throw new DBException("Error in getting internet tariffs", e);
+            logger.error("Error in getting work list", e);
+            throw new DBException("Error in getting work list", e);
         }finally {
             try {
                 closeConnection(connection);
@@ -83,8 +84,8 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
-            logger.error("Error in creating television tariff", e);
-            throw new DBException("Error in creating television tariff", e);
+            logger.error("Error in creating work", e);
+            throw new DBException("Error in creating work", e);
         } finally {
             try {
                 closeConnection(connection);
