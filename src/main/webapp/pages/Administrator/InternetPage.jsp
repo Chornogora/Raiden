@@ -5,6 +5,41 @@
 <html>
     <head>
         <title>Internet</title>
+        <script>
+            function sendUpdateEvent(id){
+                let tr = document.getElementById(id);
+                let array = tr.getElementsByTagName("td");
+                let event = new CustomEvent('updateInternet', {
+                    bubbles: true,
+                    cancelable: true,
+                    detail: {
+                        id: id,
+                        name: array[0].innerText,
+                        speed: array[1].innerText,
+                        monthPrice: array[2].innerText
+                    }
+                });
+                this.dispatchEvent(event);
+            }
+
+            function sendAddEvent(){
+                let event = new CustomEvent('addInternet', {
+                    bubbles: true,
+                    cancelable: true,
+                    detail: null
+                });
+                this.dispatchEvent(event);
+            }
+
+            function sendDeleteEvent(id){
+                let event = new CustomEvent('deleteInternet', {
+                    bubbles: true,
+                    cancelable: true,
+                    detail: id
+                });
+                this.dispatchEvent(event);
+            }
+        </script>
     </head>
     <body>
         <table border="2">
@@ -21,13 +56,15 @@
                     <td>${inet.speed}</td>
                     <td>${inet.monthPrice}</td>
                     <td>
-                        <button>Edit</button>
+                        <button onclick="sendUpdateEvent(${inet.id})">Edit</button>
                     </td>
                     <td>
-                        <button>Delete</button>
+                        <button onclick="sendDeleteEvent(${inet.id})">Delete</button>
                     </td>
                 </tr>
             </c:forEach>
         </table>
+        <br/>
+        <button onclick="sendAddEvent()">Add new Internet Tariff</button>
     </body>
 </html>

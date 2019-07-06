@@ -12,7 +12,7 @@
         <!-- header of administrator page. contains links -->
         <div id="panel">
             <a target="addition" href="InternetAdding.html">
-                <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/internet'">
+                <button class="page" onclick="openInternet()">
                     Internet
                 </button>
             </a>
@@ -39,7 +39,9 @@
         </form>
 
 
-        <iframe id="workplace" name="workplace" src="/Raiden_war/administrator/internet"></iframe>
-        <iframe id="addition" name="addition" src="InternetAdding.html" scrolling="no"></iframe>
+        <iframe id="workplace" name="workplace"></iframe>
+        <iframe id="addition" name="addition" scrolling="no"></iframe>
+
+        <script>openInternet()</script>
     </body>
 </html>

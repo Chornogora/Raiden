@@ -13,6 +13,10 @@ public class InternetDatabaseManager extends ServiceDatabaseManager {
 
     private static final String INSERT = "INSERT INTO internet VALUES(?, ?, ?)";
 
+    private static final String UPDATE = "UPDATE internet SET internet_speed = ?, internet_month_price = ? WHERE service_id = ?";
+
+    private static final String DELETE = "DELETE FROM internet WHERE service_id = ?";
+
     private static final String SELECT_ALL =
             "SELECT internet.service_id AS service_id, internet_speed, internet_month_price, service_name FROM internet, services" +
                     " WHERE internet.service_id = services.service_id ";
@@ -86,6 +90,65 @@ public class InternetDatabaseManager extends ServiceDatabaseManager {
         } catch (SQLException e) {
             logger.error("Error in creating internet tariff", e);
             throw new DBException("Error in creating internet tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public void update(Internet inet) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            updateService(connection, inet.getName(), inet.getId());
+            statement = connection.prepareStatement(UPDATE);
+            statement.setInt(1, inet.getSpeed());
+            statement.setDouble(2, inet.getMonthPrice());
+            statement.setInt(3, inet.getId());
+            statement.execute();
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in updating internet tariff", e);
+            throw new DBException("Error in updating internet tariff", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public void delete(int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+
+            statement = connection.prepareStatement(DELETE);
+            statement.setInt(1, id);
+            statement.execute();
+
+            deleteService(connection, id);
+
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            logger.error("Error in updating internet tariff", e);
+            throw new DBException("Error in updating internet tariff", e);
         } finally {
             try {
                 closeConnection(connection);

@@ -2,6 +2,7 @@ package ua.nure.bulhakov.summary.controller.administrator.services;
 
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Internet;
+import ua.nure.bulhakov.summary.service.administrator.ServiceDropper;
 import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
 
 import javax.servlet.ServletException;
@@ -26,4 +27,19 @@ public class InternetServlet extends HttpServlet {
         }
     }
 
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = -1;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        }catch(NumberFormatException e){
+            response.sendError(500);
+        }
+
+        try{
+            new ServiceDropper().DropInternet(id);
+        }catch(DBException e){
+            response.sendError(500);
+        }
+    }
 }
