@@ -116,6 +116,7 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in updating work", e);
             throw new DBException("Error in updating work", e);
         } finally {
@@ -145,6 +146,7 @@ public class WorkDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in deleting television tariff", e);
             throw new DBException("Error in deleting television tariff", e);
         } finally {

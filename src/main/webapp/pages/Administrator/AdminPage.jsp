@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
 
 <html>
     <head>
@@ -17,17 +18,17 @@
                 </button>
             </a>
             <a target="addition" href="TelevisionAdding.html">
-                <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/television'">
+                <button class="page" onclick="openTelevision()">
                     Television
                 </button>
             </a>
             <a target="addition" href="PhoneAdding.html">
-                <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/phone'">
+                <button class="page" onclick="openPhone()">
                     Telephony
                 </button>
             </a>
                  <a target="addition" href="ServiceAdding.html">
-                     <button class="page" onclick="document.getElementById('workplace').src='/Raiden_war/administrator/service'">
+                     <button class="page" onclick="openService()">
                          Services
                      </button>
                  </a>

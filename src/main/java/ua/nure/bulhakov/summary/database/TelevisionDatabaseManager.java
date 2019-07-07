@@ -120,6 +120,7 @@ public class TelevisionDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in updating television tariff", e);
             throw new DBException("Error in updating television tariff", e);
         } finally {
@@ -149,6 +150,7 @@ public class TelevisionDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in deleting television tariff", e);
             throw new DBException("Error in deleting television tariff", e);
         } finally {

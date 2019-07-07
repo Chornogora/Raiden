@@ -116,6 +116,7 @@ public class PhoneConnectionDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in updating phone connection tariff", e);
             throw new DBException("Error in updating phone connection tariff", e);
         } finally {
@@ -145,6 +146,7 @@ public class PhoneConnectionDatabaseManager extends ServiceDatabaseManager {
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            rollbackConnection(connection);
             logger.error("Error in deleting phone connection tariff", e);
             throw new DBException("Error in deleting phone connection tariff", e);
         } finally {

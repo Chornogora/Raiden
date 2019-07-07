@@ -46,5 +46,15 @@ public abstract class DatabaseManager {
             set.close();
         }
     }
+
+    void rollbackConnection(Connection connection){
+        try{
+            if(connection != null){
+                connection.rollback();
+            }
+        }catch(SQLException e){
+            //Can't do anything
+        }
+    }
 }
 
