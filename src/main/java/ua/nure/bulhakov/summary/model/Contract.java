@@ -15,8 +15,6 @@ public class Contract extends Entity {
 
     private Client client;
 
-    private Date ordered;
-
     private Date connected;
 
     private Date control;
@@ -37,14 +35,6 @@ public class Contract extends Entity {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Date getOrdered() {
-        return ordered;
-    }
-
-    public void setOrdered(Date ordered) {
-        this.ordered = ordered;
     }
 
     public Date getConnected() {

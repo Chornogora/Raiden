@@ -1,3 +1,5 @@
+window.onload = ()=>openInternet();
+
 function logout(){
     let request = new XMLHttpRequest();
     request.open("POST", "/Raiden_war/administrator/logout", false);
@@ -126,7 +128,7 @@ function openService(){
         });
 
         workplace.contentWindow.addEventListener("deleteService", (event)=>{
-            if(confirm("Do you really want to add this television tariff?")){
+            if(confirm("Do you really want to delete this service?")){
 
                 let request = new XMLHttpRequest();
                 request.open("DELETE", "/Raiden_war/administrator/service?id=" + event.detail, true);
@@ -137,6 +139,61 @@ function openService(){
                 request.send();
             }
         })
+    }
+}
+
+function openClient(){
+    let workplace = document.getElementById('workplace');
+    let addition = document.getElementById('addition');
+    workplace.src='/Raiden_war/administrator/client';
+
+    workplace.onload=()=>{
+
+        workplace.contentWindow.addEventListener("updateClient", (event)=>{
+            addition.src="/Raiden_war/pages/Administrator/Clients/ClientUpdating.jsp?"+
+                "id=" + event.detail.id + "&"+
+                "FirstName=" + event.detail.FirstName + "&"+
+                "LastName=" + event.detail.LastName + "&"+
+                "Series=" + event.detail.Series + "&"+
+                "Number=" + event.detail.Number + "&"+
+                "phone=" + event.detail.phone + "&"+
+                "email=" + event.detail.email;
+        });
+
+        workplace.contentWindow.addEventListener("addClient", ()=>{
+            addition.src="Clients/ClientRegistration.html";
+        });
+
+        workplace.contentWindow.addEventListener("deleteClient", (event)=>{
+            if(confirm("Do you really want to delete this user and all his contracts?")){
+
+                let request = new XMLHttpRequest();
+                request.open("DELETE", "/Raiden_war/administrator/client?id=" + event.detail, true);
+
+                request.onload=()=>{
+                    workplace.contentWindow.location.reload();
+                };
+                request.send();
+            }
+        });
+
+        workplace.contentWindow.addEventListener("blockClient", (event)=>{
+            let message;
+            switch(event.detail.status){
+                case "TIME_BLOCKED":
+                case "NORMAL": message = "Do you really want to block this user?"; break;
+                case "BLOCKED": message = "DO uoy really want to unblock this user?"; break;
+            }
+            if(confirm(message)){
+                let request = new XMLHttpRequest();
+                request.open("POST", "/Raiden_war/administrator/client?id=" + event.detail.id + "&status=" + event.detail.status, true);
+
+                request.onload=()=>{
+                    workplace.contentWindow.location.reload();
+                };
+                request.send();
+            }
+        });
     }
 }
 

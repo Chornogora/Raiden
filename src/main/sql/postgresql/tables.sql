@@ -5,12 +5,12 @@ create table clients
       primary key,
   client_password varchar not null,
   client_fullname varchar not null,
-  client_password_series VARCHAR(2),
-  client_password_number int not null,
+  client_passport_series VARCHAR(2),
+  client_passport_number int not null,
   client_account NUMERIC default 0 not null,
   client_phone_number VARCHAR(13) not null,
   client_email varchar(40) not null,
-  client_status VARCHAR(10) not null
+  client_status VARCHAR(20) not null
 );
 
 create table administrators
@@ -31,8 +31,7 @@ create table contracts
   contract_id serial
     constraint contracts_pk
       primary key,
-  contract_ordered Date not null,
-  contract_connected Date,
+  contract_connected Date not null,
   contract_control Date,
   contract_status VARCHAR(10),
   client_id int not null

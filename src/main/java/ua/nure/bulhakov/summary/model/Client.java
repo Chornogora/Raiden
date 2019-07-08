@@ -3,7 +3,7 @@ package ua.nure.bulhakov.summary.model;
 public class Client extends Entity {
 
     public enum STATUS{
-        NORMAL, BLOCKED
+        NORMAL, TIMED_BLOCKED, BLOCKED
     }
 
     private static final long serialVersionUID = 1L;
@@ -15,7 +15,7 @@ public class Client extends Entity {
     /*
     Can be empty
     */
-    private int passwordSeries;
+    private String passportSeries;
 
     private int passportNumber;
 
@@ -26,6 +26,11 @@ public class Client extends Entity {
     private String email;
 
     private STATUS status;
+
+    public Client(){
+        account = 0;
+        status=STATUS.NORMAL;
+    }
 
     public void setStatus(STATUS status) {
         this.status = status;
@@ -43,12 +48,12 @@ public class Client extends Entity {
         this.fullName = fullName;
     }
 
-    public int getPasswordSeries() {
-        return passwordSeries;
+    public String getPassportSeries() {
+        return passportSeries;
     }
 
-    public void setPasswordSeries(int passwordSeries) {
-        this.passwordSeries = passwordSeries;
+    public void setPassportSeries(String passportSeries) {
+        this.passportSeries = passportSeries;
     }
 
     public int getPassportNumber() {

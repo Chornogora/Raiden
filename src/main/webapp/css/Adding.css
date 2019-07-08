@@ -7,7 +7,7 @@
     font-family: Inconsolata, serif;
 }
 
-form{
+form, #form{
     position: absolute;
     width: 70%;
     left: 15%;

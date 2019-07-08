@@ -27,22 +27,24 @@
                     Telephony
                 </button>
             </a>
-                 <a target="addition" href="ServiceAdding.html">
-                     <button class="page" onclick="openService()">
-                         Services
-                     </button>
-                 </a>
-            <a><button class="page">Clients</button></a>
-            <a><button class="page">Payments</button></a>
+             <a target="addition" href="ServiceAdding.html">
+                 <button class="page" onclick="openService()">
+                     Services
+                 </button>
+             </a>
+            <a target="addition" href="Clients/ClientRegistration.html">
+                <button class="page" onclick="openClient()">
+                    Clients
+                </button>
+            </a>
+            <a><button class="page">Contracts</button></a>
         </div>
         <form method="POST" action="/Raiden_war/administrator/logout">
-            <button id="exit">Log out</button>
+            <button id="exit" onclick="logout()">Log out</button>
         </form>
-
 
         <iframe id="workplace" name="workplace"></iframe>
         <iframe id="addition" name="addition" scrolling="no"></iframe>
 
-        <script>openInternet()</script>
     </body>
 </html>

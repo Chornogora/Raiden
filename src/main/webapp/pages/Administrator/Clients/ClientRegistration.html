@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Internet</title>
+        <script src="/Raiden_war/js/Client/Client.js"></script>
+        <link rel="stylesheet" href="/Raiden_war/css/Adding.css"/>
+    </head>
+    <body>
+
+        <header>
+            <span class="pageTitle">Client Registration</span>
+            <hr class="line" size="3" color="brown"/>
+        </header>
+
+        <form>
+            <table>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="password" minlength="8" maxlength="20" pattern="[A-Za-z0-9]{20}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input type="text" name="LastName" minlength="2" pattern="\w{2,}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input type="text" name="FirstName" minlength="2" pattern="\w{2,}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Passport Series:</td>
+                    <td>
+                        <input type="text" name="Series" maxlength="2" pattern="[A-Z]{,2}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Passport Number:</td>
+                    <td><input type="number" name="Number" minlength="6" maxlength="9" /></td>
+                </tr>
+                <tr>
+                    <td>Phone Number:</td>
+                    <td><input type="number" name="Phone" minlength="11" maxlength="13" value="38"/></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="Email"/></td>
+                </tr>
+            </table>
+            <input type="submit" value="Register" onclick="register()"/>
+        </form>
+    </body>
+</html>
