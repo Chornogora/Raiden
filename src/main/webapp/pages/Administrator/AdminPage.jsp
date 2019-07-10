@@ -37,7 +37,9 @@
                     Clients
                 </button>
             </a>
-            <a><button class="page">Contracts</button></a>
+            <a target="workplace" href="/Raiden_war/administrator/contract">
+                <button class="page">Contracts</button>
+            </a>
         </div>
         <form method="POST" action="/Raiden_war/administrator/logout">
             <button id="exit" onclick="logout()">Log out</button>

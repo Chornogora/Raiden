@@ -25,6 +25,10 @@ public class ClientDatabaseManager extends DatabaseManager{
 
     private static final String DELETE = "DELETE FROM clients WHERE client_id = ?";
 
+    private ClientDatabaseManager(){
+
+    }
+
     public static ClientDatabaseManager getInstance(){
         if(instance == null){
             instance = new ClientDatabaseManager();

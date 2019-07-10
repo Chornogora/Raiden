@@ -34,6 +34,7 @@ create table contracts
   contract_connected Date not null,
   contract_control Date,
   contract_status VARCHAR(10),
+  contract_address varchar not null,
   client_id int not null
     constraint contracts_clients_client_id_fk
       references clients

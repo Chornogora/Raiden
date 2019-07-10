@@ -6,6 +6,9 @@
     <head>
         <title>Internet</title>
         <script>
+            let name = "asc";
+            let num = "asc";
+
             function sendUpdateEvent(id){
                 let tr = document.getElementById(id);
                 let array = tr.getElementsByTagName("td");
@@ -39,14 +42,78 @@
                 });
                 this.dispatchEvent(event);
             }
+
+            function sortByName(){
+                let table = document.getElementsByTagName("table")[0];
+                let temp = table.getElementsByTagName("tr");
+                let rows = [];
+                let size = temp.length;
+                for(let i = 1; i < size; ++i){
+                    let row = temp[1];
+                    rows[i-1] = row;
+                    table.childNodes[1].removeChild(row);
+                }
+
+                let func;
+                if(name === "asc"){
+                    func = (x, y)=>{
+                        return (x.getElementsByTagName("td")[0].innerText > y.getElementsByTagName("td")[0].innerText) ? 1 : -1;
+                    };
+                    name = "desc";
+                }else{
+                    func = (x, y)=>{
+                        return (x.getElementsByTagName("td")[0].innerText < y.getElementsByTagName("td")[0].innerText) ? 1 : -1;
+                    };
+                    name = "asc";
+                }
+                num = "asc";
+                rows.sort(func);
+
+                for(let row of rows){
+                    table.childNodes[1].appendChild(row);
+                }
+
+            }
+
+            function sortByPrice(){
+                let table = document.getElementsByTagName("table")[0];
+                let temp = table.getElementsByTagName("tr");
+                let rows = [];
+                let size = temp.length;
+                for(let i = 1; i < size; ++i){
+                    let row = temp[1];
+                    rows[i-1] = row;
+                    table.childNodes[1].removeChild(row);
+                }
+
+                let func;
+                if(num === "asc"){
+                    func = (x, y)=>{
+                        return (parseInt(x.getElementsByTagName("td")[2].innerText) - parseInt(y.getElementsByTagName("td")[2].innerText));
+                    };
+                    num = "desc";
+                }else{
+                    func = (x, y)=>{
+                        return (parseInt(y.getElementsByTagName("td")[2].innerText) - parseInt(x.getElementsByTagName("td")[2].innerText));
+                    };
+                    num = "asc";
+                }
+                name = "asc";
+                rows.sort(func);
+
+                for(let row of rows){
+                    table.childNodes[1].appendChild(row);
+                }
+
+            }
         </script>
     </head>
     <body>
         <table border="2">
             <tr>
-                <th>Name of Tariff</th>
+                <th onclick="sortByName()">Name of Tariff</th>
                 <th>Speed of Internet</th>
-                <th>Month Price(₴)</th>
+                <th onclick="sortByPrice()">Month Price(₴)</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>

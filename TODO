@@ -1,5 +1,8 @@
 - Scripts to files
 - Replace 'confirm' by custom
 - Email message with Password
-- Operations on tables
 - Finding by Like
+- Add rollback connection
+- Запрет добавления контрактов заблокированным пользователям
+- Нельзя добавлять пустые контракты
+- Сортировка на всех таблицах

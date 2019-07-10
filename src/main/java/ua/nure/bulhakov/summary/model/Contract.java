@@ -6,12 +6,14 @@ import java.util.List;
 public class Contract extends Entity {
 
     public enum STATUS{
-        ORDERED, CONNECTED, BLOCKED
+        CONNECTED, BLOCKED
     }
 
     private static final long serialVersionUID = 1L;
 
     private List<Service> services;
+
+    private String address;
 
     private Client client;
 
@@ -61,4 +63,11 @@ public class Contract extends Entity {
         this.status = status;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
