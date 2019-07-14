@@ -6,7 +6,8 @@ import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.model.Contract;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -19,30 +20,47 @@ public class ContractUpdater {
         }
     }
 
-    public void updateClientContracts(Client client)throws DBException{
+    void updateClientContracts(Client client)throws DBException{
         List<Contract> contracts = ContractDatabaseManager.getInstance().findByClientId(client.getId());
+        boolean isPaid = true;
         for(Contract contract : contracts){
-            if(contract.getControl().equals(new Date(System.currentTimeMillis()))){
-                updateContract(client, contract);
+            if(contract.getControl().compareTo(new Date(System.currentTimeMillis())) <= 0){
+                if(client.getStatus() != Client.STATUS.BLOCKED && !updateContract(client, contract)){
+                    isPaid = false;
+                }
             }
+        }
+
+        if(!isPaid){
+            client.setStatus(Client.STATUS.TIMED_BLOCKED);
+            ClientDatabaseManager.getInstance().updateStatus(client.getId(), client.getStatus());
+        }else if(client.getStatus() == Client.STATUS.TIMED_BLOCKED){
+            client.setStatus(Client.STATUS.NORMAL);
+            ClientDatabaseManager.getInstance().updateStatus(client.getId(), client.getStatus());
         }
     }
 
-    private void updateContract(Client client, Contract contract) throws DBException{
+    private boolean updateContract(Client client, Contract contract) throws DBException{
         if(client.getStatus() != Client.STATUS.BLOCKED) {
             if(contract.getMonthPrice() <= client.getAccount()){
                 contract.setStatus(Contract.STATUS.CONNECTED);
-                Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.MONTH, 1);
-                contract.setControl(calendar.getTime());
+                LocalDate date = LocalDate.now().plusMonths(1);
+                Date future = Date.from(date.atStartOfDay()
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant());
+                contract.setControl(future);
                 client.setAccount(client.getAccount() - contract.getMonthPrice());
                 ContractDatabaseManager.getInstance().updateStatus(contract);
                 ClientDatabaseManager.getInstance().updateAccount(client.getAccount(), client.getId());
             }else{
                 contract.setStatus(Contract.STATUS.BLOCKED);
                 ContractDatabaseManager.getInstance().updateStatus(contract);
+                return false;
             }
+        }else{
+            return false;
         }
+        return true;
     }
 
 }

@@ -237,11 +237,10 @@ public class ContractDatabaseManager extends DatabaseManager{
 
         try {
             connection = ROLES.ADMINISTRATOR.getConnection();
-            connection.setAutoCommit(false);
             statement = connection.prepareStatement(UPDATE);
             statement.setDate(1, new Date(contract.getControl().getTime()));
-            statement.setString(1, contract.getStatus().name());
-            statement.setInt(2, contract.getId());
+            statement.setString(2, contract.getStatus().name());
+            statement.setInt(3, contract.getId());
             statement.execute();
 
         } catch (SQLException e) {

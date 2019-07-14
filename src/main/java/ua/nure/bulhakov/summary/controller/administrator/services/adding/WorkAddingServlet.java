@@ -1,19 +1,19 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.adding;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Work;
 import ua.nure.bulhakov.summary.service.administrator.ServiceAdder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/administrator/service/adding")
-public class WorkAddingServlet extends HttpServlet {
+public class WorkAddingServlet extends DocumentGeneratingServlet {
 
     private static final Logger logger = Logger.getLogger(WorkAddingServlet.class);
 
@@ -41,5 +41,7 @@ public class WorkAddingServlet extends HttpServlet {
         }catch(DBException e){
             resp.sendError(500);
         }
+
+        generateDocument();
     }
 }

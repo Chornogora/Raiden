@@ -1,19 +1,19 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.updating;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Television;
 import ua.nure.bulhakov.summary.service.administrator.ServiceUpdater;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/administrator/television/updating")
-public class TelevisionUpdatingServlet extends HttpServlet {
+public class TelevisionUpdatingServlet extends DocumentGeneratingServlet {
 
     private final Logger logger = Logger.getLogger(TelevisionUpdatingServlet.class);
 
@@ -47,5 +47,7 @@ public class TelevisionUpdatingServlet extends HttpServlet {
             logger.error("Can't update internet");
             response.sendError(500);
         }
+
+        generateDocument();
     }
 }

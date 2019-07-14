@@ -1,6 +1,7 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.updating;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Internet;
 import ua.nure.bulhakov.summary.service.administrator.ServiceUpdater;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/administrator/internet/updating")
-public class InternetUpdatingServlet extends HttpServlet {
+public class InternetUpdatingServlet extends DocumentGeneratingServlet {
     private final Logger logger = Logger.getLogger(InternetUpdatingServlet.class);
 
     @Override
@@ -44,5 +45,7 @@ public class InternetUpdatingServlet extends HttpServlet {
             logger.error("Can't update internet");
             response.sendError(500);
         }
+
+        generateDocument();
     }
 }

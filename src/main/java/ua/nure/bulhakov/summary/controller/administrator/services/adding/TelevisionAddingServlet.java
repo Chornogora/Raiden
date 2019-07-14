@@ -1,19 +1,19 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.adding;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Television;
 import ua.nure.bulhakov.summary.service.administrator.ServiceAdder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/administrator/television/adding")
-public class TelevisionAddingServlet extends HttpServlet {
+public class TelevisionAddingServlet extends DocumentGeneratingServlet {
 
     private static final Logger logger = Logger.getLogger(TelevisionAddingServlet.class);
 
@@ -44,5 +44,7 @@ public class TelevisionAddingServlet extends HttpServlet {
         }catch(DBException e){
             resp.sendError(500);
         }
+
+        generateDocument();
     }
 }

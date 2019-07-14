@@ -119,7 +119,7 @@
         <span>
             <summary:print>If you want to download PDF document with our tariffs, press</summary:print>
         </span>
-        <a href="/Raiden_war/docs/Raiden_Tariffs.pdf" id="docLink">
+        <a href="/Raiden_war/docs/tariffs.pdf" id="docLink">
             <summary:print>here</summary:print>
         </a>
     </div>

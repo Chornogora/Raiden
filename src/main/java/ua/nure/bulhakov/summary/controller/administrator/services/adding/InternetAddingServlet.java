@@ -1,19 +1,19 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.adding;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Internet;
 import ua.nure.bulhakov.summary.service.administrator.ServiceAdder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/administrator/internet/adding")
-public class InternetAddingServlet extends HttpServlet {
+public class InternetAddingServlet extends DocumentGeneratingServlet {
 
     private final Logger logger = Logger.getLogger(InternetAddingServlet.class);
 
@@ -35,6 +35,9 @@ public class InternetAddingServlet extends HttpServlet {
             logger.error("Can't add internet");
             response.sendError(500);
         }
+
+        generateDocument();
+
     }
 
 }

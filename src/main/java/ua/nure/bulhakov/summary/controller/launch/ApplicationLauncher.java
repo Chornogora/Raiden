@@ -1,5 +1,10 @@
 package ua.nure.bulhakov.summary.controller.launch;
 
+import com.itextpdf.text.DocumentException;
+import ua.nure.bulhakov.summary.database.DBException;
+import ua.nure.bulhakov.summary.service.contract.Scheduler;
+import ua.nure.bulhakov.summary.service.document.PDFCreator;
+
 public class ApplicationLauncher implements Launcher{
 
     private static ApplicationLauncher instance;
@@ -22,8 +27,15 @@ public class ApplicationLauncher implements Launcher{
             DatabaseLauncher.getInstance().config(root);
             ResourceLauncher.getInstance().config(root);
         }catch(LaunchException e){
-            e.printStackTrace();
-            System.exit(1);
+            throw new RuntimeLaunchException("Can't launch program", e);
+        }
+        Scheduler.getInstance().start();
+        try{
+            PDFCreator.getInstance().generateDocument(root);
+        }catch(DocumentException e){
+            throw new RuntimeLaunchException("Can't generate PDF document", e);
+        }catch(DBException e){
+            throw new RuntimeLaunchException("Can't access database", e);
         }
     }
 
