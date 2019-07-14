@@ -10,6 +10,9 @@ import java.util.List;
 public class ClientDatabaseManager extends DatabaseManager{
 
     private static final String SELECT_ALL = "SELECT * FROM clients";
+
+    private static final String SELECT = "SELECT * FROM clients WHERE client_id = ?";
+
     private static ClientDatabaseManager instance;
 
     private static final Logger logger = Logger.getLogger(ClientDatabaseManager.class);
@@ -20,6 +23,8 @@ public class ClientDatabaseManager extends DatabaseManager{
 
     private static final String UPDATE = "UPDATE clients SET client_fullname = ?, client_passport_series=?, " +
             "client_passport_number=?, client_phone_number=?, client_email=? WHERE client_id = ?";
+
+    private static final String UPDATE_ACCOUNT = "UPDATE clients SET client_account = ? WHERE client_id = ?";
 
     private static final String UPDATE_STATUS = "UPDATE clients SET client_status = ? WHERE client_id = ?";
 
@@ -61,6 +66,77 @@ public class ClientDatabaseManager extends DatabaseManager{
         }
     }
 
+    public void updateAccount(double value, int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ROLES.CLIENT.getConnection();
+
+            statement = connection.prepareStatement(UPDATE_ACCOUNT);
+            statement.setDouble(1, value);
+            statement.setInt(2, id);
+            statement.execute();
+
+        } catch (SQLException e) {
+            logger.error("Error in updating client account", e);
+            throw new DBException("Error in updating client account", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    public Client findById(int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet set = null;
+        Client client = null;
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            statement = connection.prepareStatement(SELECT);
+            statement.setInt(1, id);
+            set = statement.executeQuery();
+
+            if(set.next()){
+                client = getClient(set);
+            }
+        } catch (SQLException e) {
+            logger.error("Error in selecting clients", e);
+            throw new DBException("Error in selecting clients", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+                closeResultSet(set);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+
+        return client;
+    }
+
+    private Client getClient(ResultSet set) throws SQLException{
+        Client client = new Client();
+        client.setId(set.getInt("client_id"));
+        client.setPassword(set.getString("client_password"));
+        client.setFullName(set.getString("client_fullname"));
+        client.setPassportSeries(set.getString("client_passport_series"));
+        client.setPassportNumber(set.getInt("client_passport_number"));
+        client.setAccount(set.getDouble("client_account"));
+        client.setPhoneNumber(set.getString("client_phone_number"));
+        client.setEmail(set.getString("client_email"));
+        client.setStatus(Client.STATUS.valueOf(set.getString("client_status")));
+
+        return client;
+    }
+
     public List<Client> findAll() throws DBException{
         Connection connection = null;
         Statement statement = null;
@@ -73,16 +149,7 @@ public class ClientDatabaseManager extends DatabaseManager{
             set = statement.executeQuery(SELECT_ALL);
 
             while(set.next()){
-                Client client = new Client();
-                client.setId(set.getInt("client_id"));
-                client.setPassword(set.getString("client_password"));
-                client.setFullName(set.getString("client_fullname"));
-                client.setPassportSeries(set.getString("client_passport_series"));
-                client.setPassportNumber(set.getInt("client_passport_number"));
-                client.setAccount(set.getDouble("client_account"));
-                client.setPhoneNumber(set.getString("client_phone_number"));
-                client.setEmail(set.getString("client_email"));
-                client.setStatus(Client.STATUS.valueOf(set.getString("client_status")));
+                Client client = getClient(set);
 
                 list.add(client);
             }

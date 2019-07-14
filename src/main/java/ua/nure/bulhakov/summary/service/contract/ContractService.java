@@ -23,4 +23,9 @@ public class ContractService {
     public void deleteContract(Contract contract) throws DBException{
         ContractDatabaseManager.getInstance().delete(contract);
     }
+
+    public List<Contract> getUserContracts(int userId) throws DBException{
+        return ContractDatabaseManager.getInstance().findByClientId(userId);
+    }
+
 }

@@ -1,0 +1,44 @@
+table{
+    position: relative;
+    left: 10%;
+    width: 80%;
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+th{
+    color: white;
+    background-color: cadetblue;
+    font-size: 200%;
+    text-align: center;
+}
+
+td{
+    text-align: center;
+    border: 3px solid black;
+}
+
+h1{
+    position: relative;
+    left: 15%;
+}
+
+#document, #contacts{
+    position: absolute;
+    left: 86%;
+    background-color: white;
+    border: 3px solid black;
+    height: 15%;
+    width: 12%;
+    font-size: 120%;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+#document{
+    top: 20%;
+}
+
+#contacts{
+    top: 40%;
+}

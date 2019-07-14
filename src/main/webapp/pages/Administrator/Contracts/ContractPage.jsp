@@ -28,7 +28,7 @@
                 <td>${contract.connected}</td>
                 <td>
                     <c:forEach var="service" items="${contract.services}">
-                        ${service.name}
+                        ${service.name},
                     </c:forEach>
                 </td>
                 <td>

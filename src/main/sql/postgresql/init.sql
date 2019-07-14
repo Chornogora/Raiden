@@ -8,6 +8,14 @@ GRANT ALL PRIVILEGES ON DATABASE raidendb TO raiden WITH GRANT OPTION;
 
 CREATE USER client WITH PASSWORD 'userPass';
 GRANT ALL PRIVILEGES ON DATABASE raidendb TO client;
+GRANT SELECT ON TABLE contracts TO client;
+GRANT SELECT, UPDATE ON TABLE clients TO client;
+GRANT SELECT ON TABLE contract_services TO client;
+GRANT SELECT ON TABLE internet TO client;
+GRANT SELECT ON TABLE phone_connection TO client;
+GRANT SELECT ON TABLE television TO client;
+GRANT SELECT ON TABLE work TO client;
+GRANT SELECT ON TABLE services TO client;
 
 CREATE USER admin WITH PASSWORD 'adminPass';
 GRANT ALL PRIVILEGES ON DATABASE raidendb TO admin;

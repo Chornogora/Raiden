@@ -21,11 +21,27 @@ public class ContractDatabaseManager extends DatabaseManager{
             "            contract_services.service_id = services.service_id\n" +
             "ORDER BY contracts.contract_id;";
 
+    private static final String SELECT = "SELECT * FROM contracts WHERE contract_id = ?";
+
+    private static final String SELECT_CONTRACTS_BY_CLIENT = "SELECT client_fullname, contracts.contract_id, contract_address, contract_connected, contract_status, contract_control, services.service_id, service_name" +
+            " FROM ((clients LEFT JOIN contracts ON clients.client_id = contracts.client_id)" +
+            " LEFT JOIN contract_services ON contracts.contract_id = contract_services.contract_id)" +
+            " INNER JOIN services ON contract_services.service_id = services.service_id" +
+            " WHERE clients.client_id = ?;";
+
+    private static final String GET_SERVICE_PRICE = "SELECT internet.internet_month_price AS price FROM services INNER JOIN internet ON services.service_id = internet.service_id WHERE services.service_id = ?\n" +
+            "UNION\n" +
+            "SELECT phone_connection_month_price AS price FROM services INNER JOIN phone_connection ON services.service_id = phone_connection.service_id WHERE services.service_id = ?\n" +
+            "UNION\n" +
+            "SELECT television_month_price AS price FROM services INNER JOIN television ON services.service_id = television.service_id WHERE services.service_id = ?\n";
+
     private static final String INSERT_ITEM = "INSERT INTO contract_services VALUES(?, ?)";
 
     private static final String DELETE_ITEMS = "DELETE FROM contract_services WHERE contract_id = ?";
 
     private static final String DELETE_CONTRACT = "DELETE FROM contractS WHERE contract_id = ?";
+
+    private static final String UPDATE = "UPDATE contracts SET contract_control = ?, contract_status = ? WHERE contract_id = ?";
 
     private static ContractDatabaseManager instance;
 
@@ -38,6 +54,48 @@ public class ContractDatabaseManager extends DatabaseManager{
             instance = new ContractDatabaseManager();
         }
         return instance;
+    }
+
+    public Contract findById(int id) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet set = null;
+        Contract contract;
+
+        try{
+            connection = ROLES.CLIENT.getConnection();
+
+            statement = connection.prepareStatement(SELECT);
+            statement.setInt(1, id);
+            set = statement.executeQuery();
+
+            if(!set.next()){
+                return null;
+            }
+
+            contract = new Contract();
+            contract.setId(set.getInt("contract_id"));
+            contract.setConnected(set.getDate("contract_connected"));
+            contract.setControl(set.getDate("contract_control"));
+            contract.setStatus(Contract.STATUS.valueOf(set.getString("contract_status")));
+            contract.setAddress(set.getString("contract_address"));
+
+            contract.setClient(ClientDatabaseManager.getInstance().findById(set.getInt("client_id")));
+
+        } catch (SQLException e) {
+            logger.error("Error in getting contract", e);
+            throw new DBException("Error in getting contract", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+                closeResultSet(set);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+
+        return contract;
     }
 
     public List<Contract> findAll() throws DBException{
@@ -56,8 +114,8 @@ public class ContractDatabaseManager extends DatabaseManager{
             }
             return result;
         } catch (SQLException e) {
-            logger.error("Error in getting contract", e);
-            throw new DBException("Error in getting contract", e);
+            logger.error("Error in getting contracts", e);
+            throw new DBException("Error in getting contracts", e);
         } finally {
             try {
                 closeConnection(connection);
@@ -173,6 +231,32 @@ public class ContractDatabaseManager extends DatabaseManager{
         }
     }
 
+    public void updateStatus(Contract contract) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(UPDATE);
+            statement.setDate(1, new Date(contract.getControl().getTime()));
+            statement.setString(1, contract.getStatus().name());
+            statement.setInt(2, contract.getId());
+            statement.execute();
+
+        } catch (SQLException e) {
+            logger.error("Error in updating contract", e);
+            throw new DBException("Error in updating contract", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
     public void delete(Contract contract) throws DBException{
         Connection connection = null;
         PreparedStatement statement = null;
@@ -190,19 +274,76 @@ public class ContractDatabaseManager extends DatabaseManager{
 
             connection.commit();
         } catch (SQLException e) {
-            try {
-                if (connection != null) {
-                    connection.rollback();
-                }
-            }catch (SQLException e2) {
-                //Impossible to do something;
-            }
+            rollbackConnection(connection);
             logger.error("Error in deleting contract", e);
             throw new DBException("Error in deleting contract", e);
         } finally {
             try {
                 closeConnection(connection);
                 closeStatement(statement);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
+
+    private void newContract(ResultSet set, List<Contract> result) throws SQLException{
+        result.add(getContract(set));
+        result.get(result.size()-1).setControl(set.getDate("contract_control"));
+        result.get(result.size()-1).setId(set.getInt("contract_id"));
+        result.get(result.size()-1).setServices(new ArrayList<>());
+    }
+
+    public List<Contract> findByClientId(int clientId) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet set = null;
+        List<Contract> result = new ArrayList<>();
+
+        try{
+            connection = ROLES.CLIENT.getConnection();
+            statement = connection.prepareStatement(SELECT_CONTRACTS_BY_CLIENT);
+            statement.setInt(1, clientId);
+            set = statement.executeQuery();
+
+            if(set.next()) {
+                newContract(set, result);
+                do {
+                    if(set.getInt("contract_id") != result.get(result.size()-1).getId()){
+                        newContract(set, result);
+                    }
+                    Service service = new Service(){};
+                    service.setId(set.getInt("service_id"));
+                    service.setName(set.getString("service_name"));
+                    result.get(result.size()-1).getServices().add(service);
+                } while (set.next());
+            }
+
+            for(Contract contract : result){
+                double monthPrice = 0;
+                for(Service service : contract.getServices()){
+                    statement = connection.prepareStatement(GET_SERVICE_PRICE);
+                    statement.setInt(1, service.getId());
+                    statement.setInt(2, service.getId());
+                    statement.setInt(3, service.getId());
+                    set = statement.executeQuery();
+
+                    if(set.next()){
+                        monthPrice += set.getDouble("price");
+                    }
+                }
+                contract.setMonthPrice(monthPrice);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            logger.error("Error in getting contracts by client id", e);
+            throw new DBException("Error in getting contracts by client id", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+                closeResultSet(set);
             } catch (SQLException e) {
                 //Impossible to do something;
             }

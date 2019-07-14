@@ -12,10 +12,10 @@ public class AdminAuthorizationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         String str = request.getRequestURI();
-        if(request.getSession().getAttribute("admin") != null || str.equals("/Raiden_war/")) {
+        if(request.getSession().getAttribute("admin") != null || str.equals("/Raiden_war/pages/Administrator/AdminAuthorization.html")) {
             chain.doFilter(req, resp);
         }else{
-            ((HttpServletResponse) resp).sendRedirect("/Raiden_war/");
+            ((HttpServletResponse) resp).sendRedirect("/Raiden_war/pages/Administrator/AdminAuthorization.html");
         }
     }
 

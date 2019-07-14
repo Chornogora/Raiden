@@ -1,6 +1,6 @@
 package ua.nure.bulhakov.summary.model;
 
-public class Internet extends Service {
+public class Internet extends Service implements MonthPaid{
 
     private static final long serialVersionUID = 1L;
 

@@ -2,7 +2,7 @@ package ua.nure.bulhakov.summary.controller.administrator;
 
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.service.administrator.Authenticable;
+import ua.nure.bulhakov.summary.service.Authenticable;
 import ua.nure.bulhakov.summary.service.administrator.Authentication;
 
 import javax.servlet.annotation.WebServlet;

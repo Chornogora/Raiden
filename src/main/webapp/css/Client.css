@@ -1,0 +1,125 @@
+@font-face {
+    font-family: Japan; /* Имя шрифта */
+    src: url(../fonts/Header.ttf); /* Путь к файлу со шрифтом */
+}
+
+body{
+    background-color: darkslategrey;
+    height: 100%;
+    overflow: hidden;
+}
+
+.topPanel{
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(white, lightgray, white);
+    height: 8%;
+}
+
+header{
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 10%;
+    height: 5%;
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+    padding-top:5px;
+}
+
+article{
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top: 18%;
+    height: 70%;
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+#Raiden{
+    position: relative;
+    bottom: 15%;
+    color: darkred;
+    font-size: 500%;
+    left: 44%;
+    font-family: Japan, serif;
+}
+
+a.panelLink{
+    margin-left: 6%;
+    margin-right: 6%;
+    font-size: 150%;
+}
+
+a.panelLink:hover{
+    color: #EA1502;
+    cursor: pointer;
+}
+
+a.language{
+    font-size: 150%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 100%;
+    background-color: red;
+    border: 5px;
+}
+
+a.language:hover{
+    background-color: blueviolet;
+    color: yellow;
+    cursor: pointer;
+    border: 7px;
+}
+
+footer{
+    position: absolute;
+    height: 9%;
+    top: 91%;
+    width: 100%;
+    background: linear-gradient(40deg, black, dimgrey);
+    box-shadow: 10px 0 0 0 #777777;
+}
+
+div.mainField{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 80%;
+    background-image: url("/Raiden_war/images/metal.png");
+}
+
+#Copyright{
+    position: absolute;
+    left: 40%;
+    width: 45%;
+    color: white;
+}
+
+#cabinet{
+    position: absolute;
+    display: inline-block;
+    width: 10em;
+    height: 2.5em;
+    line-height: 2.5em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #777;
+    color: #fff;
+    outline: none;
+    border: 2px solid #F64C2B;
+    border-radius: 5px;
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+    background: linear-gradient(#FB9575, #F45A38 48%, #EA1502 52%, #F02F17);
+
+    left: 90%;
+    top: 5%;
+}
+
+#exit:active{
+    box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}

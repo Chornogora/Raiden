@@ -20,6 +20,7 @@ public class ApplicationLauncher implements Launcher{
         try {
             LoggerLauncher.getInstance().config(root);
             DatabaseLauncher.getInstance().config(root);
+            ResourceLauncher.getInstance().config(root);
         }catch(LaunchException e){
             e.printStackTrace();
             System.exit(1);

@@ -3,8 +3,9 @@ package ua.nure.bulhakov.summary.service.administrator;
 import ua.nure.bulhakov.summary.database.AdministratorDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Administrator;
+import ua.nure.bulhakov.summary.service.Authenticable;
 
-public class Authentication implements Authenticable{
+public class Authentication implements Authenticable {
 
     @Override
     public Authenticable.STATUS authenticate(String login, String password) throws DBException {

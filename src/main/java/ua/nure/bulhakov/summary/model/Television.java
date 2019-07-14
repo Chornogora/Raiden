@@ -1,6 +1,6 @@
 package ua.nure.bulhakov.summary.model;
 
-public class Television extends Service {
+public class Television extends Service implements MonthPaid{
 
     private static final long serialVersionUID = 1L;
 
