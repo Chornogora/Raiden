@@ -1,0 +1,15 @@
+#logo{
+    position: absolute;
+    left: 72%;
+    width: 25%;
+    height: 90%;
+    top: 5%;
+}
+
+p, pre.list{
+    position: relative;
+    width: 63%;
+    left: 5%;
+    top: 5%;
+    font-size: 130%;
+}

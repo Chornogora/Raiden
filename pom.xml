@@ -99,6 +99,8 @@
       <version>1.4.4</version>
     </dependency>
 
+    <!-- Automatic added dependencies-->
+
     <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
@@ -108,6 +110,11 @@
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-jsp-api</artifactId>
       <version>9.0.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-websocket</artifactId>
+      <version>9.0.16</version>
     </dependency>
 
   </dependencies>

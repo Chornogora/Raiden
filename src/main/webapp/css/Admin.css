@@ -39,7 +39,7 @@ body{
     box-shadow: 0 3px rgb(33,147,90) inset;
 }
 
-#exit{
+#exit, #ToDialog, #ToMain{
     position: relative;
     display: inline-block;
     width: 10em;
@@ -60,8 +60,16 @@ body{
     top: 5%;
 }
 
-#exit:active{
+#exit:active, #ToDialog:active, #ToMain:active{
     box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+
+#ToDialog, #ToMain{
+    top: 10%;
+    border: 2px solid cadetblue;
+    background: linear-gradient(lightblue, deepskyblue, dodgerblue);
+    width: 8.7em;
+    height: 2em;
 }
 
 #workplace{

@@ -44,6 +44,7 @@
         <form method="POST" action="/Raiden_war/administrator/logout">
             <button id="exit" onclick="logout()">Log out</button>
         </form>
+        <a id="ToDialog" href="/Raiden_war/pages/Administrator/DialogPage.jsp">To Chat</a>
 
         <iframe id="workplace" name="workplace"></iframe>
         <iframe id="addition" name="addition" scrolling="no"></iframe>

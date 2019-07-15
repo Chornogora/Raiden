@@ -28,13 +28,13 @@
         <a class="panelLink" href="/Raiden_war/">
             <summary:print>About Us</summary:print>
         </a>
-        <a class="panelLink" href="">
+        <a class="panelLink" href="/Raiden_war/Client/services">
             <summary:print>Services</summary:print>
         </a>
         <a class="panelLink" href="">
             <summary:print>News</summary:print>
         </a>
-        <a class="panelLink" href="">
+        <a class="panelLink" href="/Raiden_war/pages/Client/Contacts.jsp">
             <summary:print>Contacts</summary:print>
         </a>
         <a class = "language" onclick="changeLocale('en')">En</a>

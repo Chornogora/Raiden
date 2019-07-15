@@ -33,7 +33,7 @@
         <a class="panelLink" href="">
             <summary:print>News</summary:print>
         </a>
-        <a class="panelLink" href="">
+        <a class="panelLink" href="/Raiden_war/pages/Client/Contacts.jpg">
             <summary:print>Contacts</summary:print>
         </a>
         <a class = "language" onclick="changeLocale('en')">En</a>

@@ -1,0 +1,45 @@
+#ChatBox{
+    position: absolute;
+    top: 10%;
+    height: 60%;
+    left: 35%;
+    width: 30%;
+    border: 3px solid yellow;
+    background-color: lightskyblue;
+    overflow-y: auto;
+}
+
+#input{
+    position: absolute;
+    top: 75%;
+    height: 10%;
+    left: 25%;
+    width: 50%;
+    margin-bottom: 5%;
+}
+
+#Send{
+    position: absolute;
+    top: 77%;
+    height: 6%;
+    left: 78%;
+    width: 5%;
+}
+
+.MyMessage, .ForeignMessage{
+    margin-bottom: 2px;
+    border-radius: 5px 5px 5px 5px;
+    padding: 3px;
+}
+
+.MyMessage{
+    background: linear-gradient(lightgoldenrodyellow, yellow, gold);
+    margin-left: 5px;
+    color: darkblue;
+}
+
+.ForeignMessage{
+    background: linear-gradient(blue, mediumblue, darkblue);
+    margin-left: 15px;
+    color: white;
+}
