@@ -10,8 +10,10 @@ function Connect(){
         let resp = request.response;
         let port = parseInt(resp);
         if(port === -1){
-            alert("No clients on line");
-            location.href = "/Raiden_war/pages/Administrator/AdminPage.jsp";
+            CustomAlert("Some text");
+            addEventListener("finished", ()=> {
+                location.href = "/Raiden_war/pages/Administrator/AdminPage.jsp";
+            });
         }
 
         //TODO get localhost dynamic

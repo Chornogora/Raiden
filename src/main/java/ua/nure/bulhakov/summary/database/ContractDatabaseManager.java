@@ -29,6 +29,11 @@ public class ContractDatabaseManager extends DatabaseManager{
             " INNER JOIN services ON contract_services.service_id = services.service_id" +
             " WHERE clients.client_id = ?;";
 
+    private static final String SELECT_CONTRACTS_BY_SERVICE = "SELECT contracts.contract_id, contract_address, contract_connected, contract_status, contract_control" +
+            " FROM (contracts LEFT JOIN contract_services ON contracts.contract_id = contract_services.contract_id)" +
+            " INNER JOIN services ON contract_services.service_id = services.service_id" +
+            " WHERE services.service_id = ?";
+
     private static final String GET_SERVICE_PRICE = "SELECT internet.internet_month_price AS price FROM services INNER JOIN internet ON services.service_id = internet.service_id WHERE services.service_id = ?\n" +
             "UNION\n" +
             "SELECT phone_connection_month_price AS price FROM services INNER JOIN phone_connection ON services.service_id = phone_connection.service_id WHERE services.service_id = ?\n" +
@@ -73,12 +78,8 @@ public class ContractDatabaseManager extends DatabaseManager{
                 return null;
             }
 
-            contract = new Contract();
-            contract.setId(set.getInt("contract_id"));
-            contract.setConnected(set.getDate("contract_connected"));
-            contract.setControl(set.getDate("contract_control"));
-            contract.setStatus(Contract.STATUS.valueOf(set.getString("contract_status")));
-            contract.setAddress(set.getString("contract_address"));
+            contract = getStandardContract(set);
+
 
             contract.setClient(ClientDatabaseManager.getInstance().findById(set.getInt("client_id")));
 
@@ -149,6 +150,17 @@ public class ContractDatabaseManager extends DatabaseManager{
         contract.setServices(services);
         result.add(contract);
         return result;
+    }
+
+    private Contract getStandardContract(ResultSet set) throws SQLException{
+        Contract contract = new Contract();
+        contract.setId(set.getInt("contract_id"));
+        contract.setConnected(set.getDate("contract_connected"));
+        contract.setControl(set.getDate("contract_control"));
+        contract.setStatus(Contract.STATUS.valueOf(set.getString("contract_status")));
+        contract.setAddress(set.getString("contract_address"));
+        return contract;
+
     }
 
     private Contract getContract(ResultSet set) throws SQLException{
@@ -349,4 +361,35 @@ public class ContractDatabaseManager extends DatabaseManager{
         }
     }
 
+    public List<Contract> findByServiceId(int serviceId) throws DBException{
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet set = null;
+        List<Contract> result = new ArrayList<>();
+
+        try{
+            connection = ROLES.ADMINISTRATOR.getConnection();
+            statement = connection.prepareStatement(SELECT_CONTRACTS_BY_SERVICE);
+            statement.setInt(1, serviceId);
+            set = statement.executeQuery();
+
+            while(set.next()) {
+                Contract contract = getStandardContract(set);
+
+                result.add(contract);
+            }
+            return result;
+        } catch (SQLException e) {
+            logger.error("Error in getting contracts by service id", e);
+            throw new DBException("Error in getting contracts by service id", e);
+        } finally {
+            try {
+                closeConnection(connection);
+                closeStatement(statement);
+                closeResultSet(set);
+            } catch (SQLException e) {
+                //Impossible to do something;
+            }
+        }
+    }
 }

@@ -37,7 +37,10 @@ public class WorkServlet extends HttpServlet {
         }
 
         try{
-            new ServiceDropper().DropWork(id);
+            boolean result = new ServiceDropper().dropWork(id);
+            if(!result){
+                response.sendError(403);
+            }
         }catch(DBException e){
             response.sendError(500);
         }

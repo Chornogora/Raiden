@@ -24,18 +24,27 @@ function openInternet(){
            addition.src="InternetAdding.html";
         });
 
-        workplace.contentWindow.addEventListener("deleteInternet", (event)=>{
-            if(confirm("Do you really want to add this internet tariff?")){
-                //alert(event.detail);
-                let request = new XMLHttpRequest();
-                request.open("DELETE", "/Raiden_war/administrator/internet?id=" + event.detail, true);
+        addition.contentWindow.addEventListener("reload", ()=>{
+            setTimeout(()=>workplace.contentWindow.location.reload(), 300);
+        });
 
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
-        })
+        workplace.contentWindow.addEventListener("deleteInternet", (event)=>{
+            addEventListener("ordered", (event2)=>{
+                if(event2.detail){
+                    let request = new XMLHttpRequest();
+                    request.open("DELETE", "/Raiden_war/administrator/internet?id=" + event.detail, true);
+
+                    request.onload=()=>{
+                        if(request.status === 403){
+                            CustomAlert("It's impossible to delete tariff. Maybe, there are some contracts using it");
+                        }
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm("Do you really want to delete this Internet Tariff?");
+        });
     }
 }
 
@@ -58,18 +67,27 @@ function openPhone(){
             addition.src="PhoneAdding.html";
         });
 
+        addition.contentWindow.addEventListener("reload", ()=>{
+            setTimeout(()=>workplace.contentWindow.location.reload(), 300);
+        });
+
         workplace.contentWindow.addEventListener("deletePhone", (event)=>{
-            if(confirm("Do you really want to add this phone connection tariff?")){
+            addEventListener("ordered", (event2)=>{
+                if(event2.detail) {
+                    let request = new XMLHttpRequest();
+                    request.open("DELETE", "/Raiden_war/administrator/phone?id=" + event.detail, true);
 
-                let request = new XMLHttpRequest();
-                request.open("DELETE", "/Raiden_war/administrator/phone?id=" + event.detail, true);
-
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
-        })
+                    request.onload = () => {
+                        if(request.status === 403){
+                            CustomAlert("It's impossible to delete tariff. Maybe, there are some contracts using it");
+                        }
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm("Do you really want to delete this phone connection tariff?");
+        });
     }
 }
 
@@ -93,18 +111,28 @@ function openTelevision(){
             addition.src="TelevisionAdding.html";
         });
 
-        workplace.contentWindow.addEventListener("deleteTelevision", (event)=>{
-            if(confirm("Do you really want to add this television tariff?")){
+        addition.contentWindow.addEventListener("reload", ()=>{
+            setTimeout(()=>workplace.contentWindow.location.reload(), 300);
+        });
 
-                let request = new XMLHttpRequest();
-                request.open("DELETE", "/Raiden_war/administrator/television?id=" + event.detail, true);
+        workplace.contentWindow.addEventListener("deleteTelevision", (event)=> {
+            addEventListener("ordered", (event2) => {
+                if (event2.detail) {
 
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
-        })
+                    let request = new XMLHttpRequest();
+                    request.open("DELETE", "/Raiden_war/administrator/television?id=" + event.detail, true);
+
+                    request.onload = () => {
+                        if(request.status === 403){
+                            CustomAlert("It's impossible to delete tariff. Maybe, there are some contracts using it");
+                        }
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm("Do you really want to delete this television tariff?");
+        });
     }
 }
 
@@ -113,32 +141,42 @@ function openService(){
     let workplace = document.getElementById('workplace');
     let addition = document.getElementById('addition');
     workplace.src='/Raiden_war/administrator/service';
-    workplace.onload=()=>{
+    workplace.onload=()=> {
 
-        workplace.contentWindow.addEventListener("updateService", (event)=>{
-            addition.src="/Raiden_war/pages/Administrator/Updating/ServiceUpdating.jsp?"+
-                "id=" + event.detail.id + "&"+
-                "name=" + event.detail.name + "&"+
-                "measure=" + event.detail.measure + "&"+
+        workplace.contentWindow.addEventListener("updateService", (event) => {
+            addition.src = "/Raiden_war/pages/Administrator/Updating/ServiceUpdating.jsp?" +
+                "id=" + event.detail.id + "&" +
+                "name=" + event.detail.name + "&" +
+                "measure=" + event.detail.measure + "&" +
                 "price=" + event.detail.price;
         });
 
-        workplace.contentWindow.addEventListener("addService", ()=>{
-            addition.src="ServiceAdding.html";
+        workplace.contentWindow.addEventListener("addService", () => {
+            addition.src = "ServiceAdding.html";
         });
 
-        workplace.contentWindow.addEventListener("deleteService", (event)=>{
-            if(confirm("Do you really want to delete this service?")){
+        addition.contentWindow.addEventListener("reload", ()=>{
+            setTimeout(()=>workplace.contentWindow.location.reload(), 300);
+        });
 
-                let request = new XMLHttpRequest();
-                request.open("DELETE", "/Raiden_war/administrator/service?id=" + event.detail, true);
+        workplace.contentWindow.addEventListener("deleteService", (event) => {
+            addEventListener("ordered", (event2) => {
+                if (event2.detail) {
 
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
-        })
+                    let request = new XMLHttpRequest();
+                    request.open("DELETE", "/Raiden_war/administrator/service?id=" + event.detail, true);
+
+                    request.onload = () => {
+                        if(request.status === 403){
+                            CustomAlert("It's impossible to delete tariff. Maybe, there are some contracts using it");
+                        }
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm("Do you really want to delete this service?");
+        });
     }
 }
 
@@ -164,17 +202,28 @@ function openClient(){
             addition.src="Clients/ClientRegistration.html";
         });
 
-        workplace.contentWindow.addEventListener("deleteClient", (event)=>{
-            if(confirm("Do you really want to delete this user and all his contracts?")){
+        addition.contentWindow.addEventListener("reload", ()=>{
+            setTimeout(()=>workplace.contentWindow.location.reload(), 300);
+        });
 
-                let request = new XMLHttpRequest();
-                request.open("DELETE", "/Raiden_war/administrator/client?id=" + event.detail, true);
+        workplace.contentWindow.addEventListener("deleteClient", (event)=> {
+            let id = event.detail;
+            addEventListener("ordered", (event2) => {
+                if (event2.detail) {
 
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
+                    let request = new XMLHttpRequest();
+                    request.open("DELETE", "/Raiden_war/administrator/client?id=" + id, true);
+
+                    request.onload = () => {
+                        if(request.status === 403){
+                            CustomAlert("It's impossible to delete client. Maybe, there are some his contracts in the system");
+                        }
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm("Do you really want to delete this user?");
         });
 
         workplace.contentWindow.addEventListener("blockClient", (event)=>{
@@ -182,18 +231,21 @@ function openClient(){
             switch(event.detail.status){
                 case "TIME_BLOCKED":
                 case "NORMAL": message = "Do you really want to block this user?"; break;
-                case "BLOCKED": message = "DO uoy really want to unblock this user?"; break;
+                case "BLOCKED": message = "Do you really want to unblock this user?"; break;
             }
-            if(confirm(message)){
-                let request = new XMLHttpRequest();
-                request.open("POST", "/Raiden_war/administrator/client?id=" + event.detail.id + "&status=" + event.detail.status, true);
+            addEventListener("ordered", (event2) => {
+                if (event2.detail) {
 
-                request.onload=()=>{
-                    workplace.contentWindow.location.reload();
-                };
-                request.send();
-            }
+                    let request = new XMLHttpRequest();
+                    request.open("POST", "/Raiden_war/administrator/client?id=" + event.detail.id + "&status=" + event.detail.status, true);
+
+                    request.onload = () => {
+                        workplace.contentWindow.location.reload();
+                    };
+                    request.send();
+                }
+            });
+            CustomConfirm(message);
         });
     }
 }
-

@@ -1,0 +1,39 @@
+.back{
+    position: absolute;
+    left: -5%;
+    top: -5%;
+    width: 110%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 6;
+}
+
+.panel{
+    position: absolute;
+    left: 35%;
+    top: 5%;
+    width: 30%;
+    height: 20%;
+    z-index: 7;
+    background-color: white;
+    border: 3px solid black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.button{
+    position: absolute;
+    left: 60%;
+    top: 70%;
+    font-size: 150%;
+    color: white;
+    background: linear-gradient(hotpink, red, darkred);
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.message{
+    font-size: 130%;
+}

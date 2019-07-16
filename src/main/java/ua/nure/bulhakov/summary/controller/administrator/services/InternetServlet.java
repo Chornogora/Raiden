@@ -37,7 +37,10 @@ public class InternetServlet extends HttpServlet {
         }
 
         try{
-            new ServiceDropper().DropInternet(id);
+            boolean result = new ServiceDropper().dropInternet(id);
+            if(!result){
+                response.sendError(403);
+            }
         }catch(DBException e){
             response.sendError(500);
         }

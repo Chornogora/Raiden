@@ -15,7 +15,7 @@
 <body>
 <div class="topPanel">
         <span id="Raiden">
-            Raiden
+            Raiden - News
         </span>
     <a id="cabinet" href="/Raiden_war/pages/Client/Authorization.jsp"><summary:print>Personal Cabinet</summary:print></a>
 </div>

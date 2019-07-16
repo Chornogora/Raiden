@@ -16,6 +16,10 @@ public class ContractService {
         ContractDatabaseManager.getInstance().insert(contract);
     }
 
+    public List<Contract> getServiceContracts(int serviceId) throws DBException{
+        return ContractDatabaseManager.getInstance().findByServiceId(serviceId);
+    }
+
     public List<Contract> getContracts() throws DBException{
         return ContractDatabaseManager.getInstance().findAll();
     }

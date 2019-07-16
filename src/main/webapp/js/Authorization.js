@@ -18,7 +18,14 @@ function authorize(){
             case 200:
                 location.href="/Raiden_war/pages/Administrator/AdminPage.jsp";
                 break;
-            default: alert(request.status);
+            case 204:
+                CustomAlert("Incorrect password");
+                break;
+            case 400:
+                CustomAlert("Incorrect login");
+                break;
+            default:
+                CustomAlert("Server error");
         }
     };
 

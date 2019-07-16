@@ -5,48 +5,14 @@
 <html>
 <head>
     <title>Service</title>
-    <script>
-        function sendUpdateEvent(id){
-            let tr = document.getElementById(id);
-            let array = tr.getElementsByTagName("td");
-            let event = new CustomEvent('updateService', {
-                bubbles: true,
-                cancelable: true,
-                detail: {
-                    id: id,
-                    name: array[0].innerText,
-                    measure: array[1].innerText,
-                    price: array[2].innerText
-                }
-            });
-            this.dispatchEvent(event);
-        }
-
-        function sendAddEvent(){
-            let event = new CustomEvent('addService', {
-                bubbles: true,
-                cancelable: true,
-                detail: null
-            });
-            this.dispatchEvent(event);
-        }
-
-        function sendDeleteEvent(id){
-            let event = new CustomEvent('deleteService', {
-                bubbles: true,
-                cancelable: true,
-                detail: id
-            });
-            this.dispatchEvent(event);
-        }
-    </script>
+    <script src="/Raiden_war/js/WorkplaceFrame/Service.js"></script>
 </head>
 <body>
 <table border="2">
     <tr>
-        <th>Name of Service</th>
+        <th onclick="sortByName()">Name of Service</th>
         <th>Measure</th>
-        <th>Price</th>
+        <th onclick="sortByPrice()">Price</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>

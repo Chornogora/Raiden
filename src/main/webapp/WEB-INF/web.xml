@@ -10,6 +10,16 @@
     <url-pattern>/pages/Administrator/*</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>ClientAuthorizationFilter</filter-name>
+    <url-pattern>/pages/Client/Cabinet2.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>ClientAuthorizationFilter</filter-name>
+    <url-pattern>/pages/Client/Account.jsp</url-pattern>
+  </filter-mapping>
+
   <welcome-file-list>
     <welcome-file>pages/Client/MainPage.jsp</welcome-file>
   </welcome-file-list>

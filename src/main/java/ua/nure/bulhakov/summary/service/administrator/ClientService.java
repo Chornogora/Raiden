@@ -1,8 +1,10 @@
 package ua.nure.bulhakov.summary.service.administrator;
 
 import ua.nure.bulhakov.summary.database.ClientDatabaseManager;
+import ua.nure.bulhakov.summary.database.ContractDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Client;
+import ua.nure.bulhakov.summary.model.Contract;
 
 import java.util.List;
 
@@ -22,8 +24,13 @@ public class ClientService {
         ClientDatabaseManager.getInstance().update(client);
     }
 
-    public void deleteClient(int id) throws DBException{
+    public boolean deleteClient(int id) throws DBException{
+        List<Contract> list = ContractDatabaseManager.getInstance().findByClientId(id);
+        if(!list.isEmpty()){
+            return false;
+        }
         ClientDatabaseManager.getInstance().delete(id);
+        return true;
     }
 
     public void changeStatus(int id, Client.STATUS status) throws DBException {

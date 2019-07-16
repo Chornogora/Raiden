@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/Raiden_war/css/Admin.css"/>
     <link rel="stylesheet" href="/Raiden_war/css/AdminChat.css"/>
     <script src="/Raiden_war/js/AdminChat.js"></script>
+    <script src="/Raiden_war/js/Util.js"></script>
 </head>
 <body>
     <form method="POST" action="/Raiden_war/administrator/logout">

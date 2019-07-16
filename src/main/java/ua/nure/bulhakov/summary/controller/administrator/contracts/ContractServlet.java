@@ -2,9 +2,7 @@ package ua.nure.bulhakov.summary.controller.administrator.contracts;
 
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.model.*;
-import ua.nure.bulhakov.summary.service.administrator.ClientService;
-import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
+import ua.nure.bulhakov.summary.model.Contract;
 import ua.nure.bulhakov.summary.service.contract.ContractService;
 
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/administrator/contract")

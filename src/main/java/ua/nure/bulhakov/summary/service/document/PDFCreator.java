@@ -10,7 +10,6 @@ import ua.nure.bulhakov.summary.model.PhoneConnection;
 import ua.nure.bulhakov.summary.model.Television;
 import ua.nure.bulhakov.summary.model.Work;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -33,13 +32,11 @@ public class PDFCreator {
 
     public void generateDocument(String root) throws DocumentException, DBException {
         Document document = new Document();
-        File file = new File(root + "/docs/tariffs.pdf");
-        FileOutputStream stream = null;
+        FileOutputStream stream;
         try {
-            file.createNewFile();
             stream = new FileOutputStream(root + "/docs/tariffs.pdf");
         }catch(IOException e){
-            e.printStackTrace();
+            throw new DocumentException("Can't create file");
         }
         PdfWriter.getInstance(document, stream);
         document.open();

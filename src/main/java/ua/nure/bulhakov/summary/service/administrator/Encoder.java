@@ -28,7 +28,12 @@ public class Encoder {
     public String encode(String message){
         digest.update(message.getBytes(Charset.forName("UTF-8")));
         byte[] temp = digest.digest();
-        return new String(temp);
+        for(int i = 0; i < temp.length; ++i){
+            if(temp[i] == 0){
+                temp[i] = 1;
+            }
+        }
+        return new String(temp, Charset.forName("UTF-8"));
     }
 
     public boolean compare(String message, String codedMessage){

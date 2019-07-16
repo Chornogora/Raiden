@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>
-        Main
+        Raiden - Services
     </title>
     <link rel="stylesheet" href="/Raiden_war/css/Client.css"/>
     <link rel="stylesheet" href="/Raiden_war/css/Services.css"/>

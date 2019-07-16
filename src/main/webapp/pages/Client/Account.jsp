@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>
-        Raiden - Cabinet
+        Raiden - Account
     </title>
     <link rel="stylesheet" href="/Raiden_war/css/Client.css"/>
     <link rel="stylesheet" href="/Raiden_war/css/ClientCabinet.css"/>

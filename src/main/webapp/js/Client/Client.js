@@ -15,7 +15,7 @@ function register(){
     if(checkInput(client)){
         sendQuery(client);
     }else{
-        alert("Invalid input");
+        CustomAlert("Invalid Input");
     }
 
 }
@@ -78,6 +78,6 @@ function update(){
 
         request.send();
     }else{
-        alert("Invalid input");
+        CustomAlert("Invalid input");
     }
 }

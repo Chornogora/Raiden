@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Television</title>
     <script src="/Raiden_war/js/Adding/TelevisionAdding.js"></script>
+    <script src="/Raiden_war/js/Adding/ServiceAdding.js"></script>
     <link rel="stylesheet" href="/Raiden_war/css/Adding.css"/>
 </head>
 <body>
@@ -19,27 +20,27 @@
         <tr>
             <td>Name:</td>
             <td>
-                <input type="text" name="name" />
+                <input type="text" name="name" required/>
             </td>
         </tr>
         <tr>
             <td>Channels:</td>
             <td>
-                <input type="number" id="channels" name="channels" onchange="checkValue()"/></td>
+                <input type="number" id="channels" name="channels" onchange="checkValue()" required/></td>
             </td>
         </tr>
         <tr>
             <td>Format:</td>
             <td>
-                <input type="text" name="format" />
+                <input type="text" name="format" required/>
             </td>
         </tr>
         <tr>
             <td>Price per month(₴):</td>
-            <td><input type="number" id="price" name="price" onchange="checkValue()"/></td>
+            <td><input type="number" id="price" name="price" onchange="checkValue()" required/></td>
         </tr>
     </table>
-    <input type="submit" value="Add" id="submit"/>
+    <input type="submit" value="Add" id="submit" onclick="sendReloadEvent()"/>
 </form>
 </body>
 </html>

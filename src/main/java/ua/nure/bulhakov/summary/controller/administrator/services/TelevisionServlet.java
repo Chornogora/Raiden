@@ -37,7 +37,10 @@ public class TelevisionServlet extends HttpServlet {
         }
 
         try{
-            new ServiceDropper().DropTelevision(id);
+            boolean result = new ServiceDropper().dropTelevision(id);
+            if(!result){
+                response.sendError(403);
+            }
         }catch(DBException e){
             response.sendError(500);
         }

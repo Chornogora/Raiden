@@ -68,6 +68,5 @@
             <summary:print>video materials are possible only with the written permission of the publisher.</summary:print>
         </pre>
     </footer>
-
     </body>
 </html>

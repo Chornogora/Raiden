@@ -45,15 +45,15 @@ public class ClientServlet extends HttpServlet {
             logger.error("Can't delete client");
             resp.sendError(500);
         }
-
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int id = getId(req);
-
         try{
-            new ClientService().deleteClient(id);
+            if(!new ClientService().deleteClient(id)){
+                resp.sendError(403);
+            }
         }catch(DBException e){
             logger.error("Can't delete client");
             resp.sendError(500);

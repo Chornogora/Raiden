@@ -37,7 +37,10 @@ public class PhoneConnectionServlet extends HttpServlet {
         }
 
         try{
-            new ServiceDropper().DropPhoneConnection(id);
+            boolean result = new ServiceDropper().dropPhoneConnection(id);
+            if(!result){
+                response.sendError(403);
+            }
         }catch(DBException e){
             response.sendError(500);
         }

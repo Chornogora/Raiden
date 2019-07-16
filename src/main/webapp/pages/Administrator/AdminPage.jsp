@@ -7,6 +7,7 @@
         <title>Admin Page</title>
         <link rel="stylesheet" href="/Raiden_war/css/Admin.css"/>
         <script src="/Raiden_war/js/AdminPage.js"></script>
+        <script src="/Raiden_war/js/Util.js"></script>
     </head>
     <body>
 

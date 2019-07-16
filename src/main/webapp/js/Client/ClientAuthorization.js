@@ -9,7 +9,14 @@ function authorizeByContract(){
             case 200:
                 location.href="/Raiden_war/client";
                 break;
-            default: alert(request.status);
+            case 204:
+                CustomAlert("Incorrect password");
+                break;
+            case 400:
+                CustomAlert("Incorrect login");
+                break;
+            default:
+                CustomAlert("Server error");
         }
     };
 

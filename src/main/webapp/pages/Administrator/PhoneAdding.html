@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Internet</title>
         <script src="/Raiden_war/js/Adding/PhoneAdding.js"></script>
+        <script src="/Raiden_war/js/Adding/ServiceAdding.js"></script>
         <link rel="stylesheet" href="/Raiden_war/css/Adding.css"/>
     </head>
     <body>
@@ -19,21 +20,21 @@
                 <tr>
                     <td>Name:</td>
                     <td>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" required/>
                     </td>
                 </tr>
                 <tr>
                     <td>Minutes for mobile operators:</td>
                     <td>
-                        <input type="number" id="minutes" name="minutes" onchange="checkValue()"/>
+                        <input type="number" id="minutes" name="minutes" onchange="checkValue()" required/>
                     </td>
                 </tr>
                 <tr>
                     <td>Price per month(₴):</td>
-                    <td><input type="number" id="price" name="price" onchange="checkValue()"/></td>
+                    <td><input type="number" id="price" name="price" onchange="checkValue()" required/></td>
                 </tr>
             </table>
-            <input type="submit" value="Add" id="submit"/>
+            <input type="submit" value="Add" id="submit" onclick="sendReloadEvent()"/>
         </form>
     </body>
 </html>
