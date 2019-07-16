@@ -2,11 +2,13 @@ package ua.nure.bulhakov.summary.controller.administrator.contracts;
 
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.database.ClientDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.*;
 import ua.nure.bulhakov.summary.service.administrator.ClientService;
 import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
 import ua.nure.bulhakov.summary.service.contract.ContractService;
+import ua.nure.bulhakov.summary.service.email.EmailService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +47,8 @@ public class ContractAddingServlet extends HttpServlet {
             req.setAttribute("phoneTariffs", getter.getPhone());
             req.setAttribute("services", getter.getWorks());
         }catch(DBException e){
-
+            logger.error("Can't get data from database", e);
+            resp.sendError(500);
         }
 
         req.getRequestDispatcher("/pages/Administrator/Contracts/ContractAddingPage.jsp").forward(req, resp);
@@ -58,10 +61,6 @@ public class ContractAddingServlet extends HttpServlet {
 
         Contract contract = new Contract();
         contract.setAddress(requestContract.address);
-
-        Client client = new Client();
-        client.setId(requestContract.userId);
-        contract.setClient(client);
 
         List<Service> services = new ArrayList<>();
 
@@ -94,10 +93,17 @@ public class ContractAddingServlet extends HttpServlet {
         contract.setServices(services);
 
         try {
+            Client client = ClientDatabaseManager.getInstance().findById(requestContract.userId);
+            contract.setClient(client);
             new ContractService().addContract(contract);
         } catch (DBException e) {
             logger.error("Can't add contract");
             resp.sendError(500);
         }
+
+        if(!new EmailService().sendNewContractMessage(contract)){
+            logger.info("Can't send email to client with id " + contract.getClient().getId());
+        }
+
     }
 }

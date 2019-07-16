@@ -31,7 +31,7 @@
         <a class="panelLink" href="/Raiden_war/Client/services">
             <summary:print>Services</summary:print>
         </a>
-        <a class="panelLink" href="">
+        <a class="panelLink" href="/Raiden_war/pages/Client/News.jsp">
             <summary:print>News</summary:print>
         </a>
         <a class="panelLink" href="/Raiden_war/pages/Client/Contacts.jsp">
@@ -41,7 +41,7 @@
         <a class = "language" onclick="changeLocale('ru')">Ru</a>
     </header>
 
-    <article>
+    <article style="overflow-x: hidden">
         <h1><summary:print>Internet</summary:print></h1>
         <table>
             <tr>
