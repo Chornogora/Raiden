@@ -20,14 +20,12 @@ public class ContractUpdater {
         }
     }
 
-    void updateClientContracts(Client client)throws DBException{
+    public void updateClientContracts(Client client)throws DBException{
         List<Contract> contracts = ContractDatabaseManager.getInstance().findByClientId(client.getId());
         boolean isPaid = true;
         for(Contract contract : contracts){
-            if(contract.getControl().compareTo(new Date(System.currentTimeMillis())) <= 0){
-                if(client.getStatus() != Client.STATUS.BLOCKED && !updateContract(client, contract)){
-                    isPaid = false;
-                }
+            if(client.getStatus() != Client.STATUS.BLOCKED && !updateContract(client, contract)){
+                isPaid = false;
             }
         }
 
@@ -41,6 +39,13 @@ public class ContractUpdater {
     }
 
     private boolean updateContract(Client client, Contract contract) throws DBException{
+        if(contract.getControl().compareTo(new Date(System.currentTimeMillis())) > 0){
+            if(contract.getStatus() != Contract.STATUS.CONNECTED) {
+                contract.setStatus(Contract.STATUS.CONNECTED);
+                ContractDatabaseManager.getInstance().updateStatus(contract);
+            }
+            return true;
+        }
         if(client.getStatus() != Client.STATUS.BLOCKED) {
             if(contract.getMonthPrice() <= client.getAccount()){
                 contract.setStatus(Contract.STATUS.CONNECTED);

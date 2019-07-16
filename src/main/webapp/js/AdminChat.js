@@ -10,7 +10,7 @@ function Connect(){
         let resp = request.response;
         let port = parseInt(resp);
         if(port === -1){
-            CustomAlert("Some text");
+            CustomAlert("No clients");
             addEventListener("finished", ()=> {
                 location.href = "/Raiden_war/pages/Administrator/AdminPage.jsp";
             });

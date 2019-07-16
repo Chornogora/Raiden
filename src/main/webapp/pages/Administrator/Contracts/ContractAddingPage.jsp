@@ -7,6 +7,7 @@
         <title>Contract</title>
         <script src="/Raiden_war/js/Adding/ContractAdding.js"></script>
         <link rel="stylesheet" href="/Raiden_war/css/Adding.css"/>
+        <script src="/Raiden_war/js/Util.js"></script>
     </head>
     <body>
 

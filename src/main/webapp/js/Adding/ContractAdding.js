@@ -59,6 +59,16 @@ function CreateContract() {
         }
     }
 
+    if(contract.address === undefined || contract.address.length === 0){
+        CustomAlert("Address was not entered");
+        return;
+    }
+
+    if(contract.services === undefined && contract.internet === undefined
+        && contract.television === undefined && contract.phone === undefined){
+        CustomAlert("Services were not chosen");
+        return;
+    }
     addContract(contract);
 
 }
@@ -69,6 +79,8 @@ function addContract(contract){
     request.onload=()=>{
         if(request.status === 200){
             location.href="/Raiden_war/pages/Administrator/Success.html";
+        }else if(request.status === 403){
+            CustomAlert("Contract were not added. Seems that this account is blocked.");
         }
     };
     request.send();

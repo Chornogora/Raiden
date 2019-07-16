@@ -5,6 +5,7 @@ import ua.nure.bulhakov.summary.database.ContractDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.model.Contract;
+import ua.nure.bulhakov.summary.service.contract.ContractUpdater;
 
 import java.util.List;
 
@@ -36,18 +37,26 @@ public class ClientService {
     public void changeStatus(int id, Client.STATUS status) throws DBException {
         Client.STATUS targetStatus;
         switch(status){
-            case NORMAL:
-                targetStatus = Client.STATUS.BLOCKED;
-                break;
             case BLOCKED:
                 targetStatus = Client.STATUS.NORMAL;
                 break;
+            case NORMAL:
             case TIMED_BLOCKED:
+                ContractDatabaseManager manager = ContractDatabaseManager.getInstance();
+                List<Contract> contracts = manager.findByClientId(id);
+                for(Contract contract : contracts){
+                    contract.setStatus(Contract.STATUS.BLOCKED);
+                    manager.updateStatus(contract);
+                }
                 targetStatus = Client.STATUS.BLOCKED;
                 break;
             //never will be used
             default: throw new IllegalArgumentException();
         }
         ClientDatabaseManager.getInstance().updateStatus(id, targetStatus);
+        if(targetStatus == Client.STATUS.NORMAL){
+            Client client = ClientDatabaseManager.getInstance().findById(id);
+            new ContractUpdater().updateClientContracts(client);
+        }
     }
 }

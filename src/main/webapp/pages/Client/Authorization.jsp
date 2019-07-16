@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/Raiden_war/css/ClientAuthorization.css"/>
     <script src="/Raiden_war/js/Client/ClientLocalization.js"></script>
     <script src="/Raiden_war/js/Client/ClientAuthorization.js"></script>
+    <script src="/Raiden_war/js/Util.js"></script>
 </head>
 <body>
     <div class="topPanel">
@@ -42,7 +43,7 @@
     </header>
 
     <article>
-        <form id="form">
+        <form id="form" onsubmit="return false;">
             <div id="HeadTitle">
                 <span id="text"><summary:print>Authorization</summary:print></span>
             </div>

@@ -13,7 +13,7 @@ public class EmailService {
 
     private static final String CONTRACT_MESSAGE = "?, new contract were successfully connected. " +
             "\n\nContract number: ?. Now you can enter your personal cabinet on our " +
-            "website using this contract number.";
+            "website using this contract number. To activate account replenish your account.";
 
     private static final String CONTRACT_TOPIC = "New Raiden Contract";
 

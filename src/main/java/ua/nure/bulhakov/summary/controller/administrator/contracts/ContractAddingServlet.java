@@ -90,12 +90,20 @@ public class ContractAddingServlet extends HttpServlet {
             }
         }
 
+        if(services.isEmpty()){
+            resp.sendError(500);
+            return;
+        }
+
         contract.setServices(services);
 
         try {
             Client client = ClientDatabaseManager.getInstance().findById(requestContract.userId);
             contract.setClient(client);
-            new ContractService().addContract(contract);
+            boolean b = new ContractService().addContract(contract);
+            if(!b){
+                resp.sendError(403);
+            }
         } catch (DBException e) {
             logger.error("Can't add contract");
             resp.sendError(500);
