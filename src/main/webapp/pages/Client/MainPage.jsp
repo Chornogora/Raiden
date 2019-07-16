@@ -31,7 +31,7 @@
         <a class="panelLink" href="/Raiden_war/client/services">
             <summary:print>Services</summary:print>
         </a>
-        <a class="panelLink" href="">
+        <a class="panelLink" href="/Raiden_war/pages/Client/News.jsp">
             <summary:print>News</summary:print>
         </a>
         <a class="panelLink" href="/Raiden_war/pages/Client/Contacts.jsp">

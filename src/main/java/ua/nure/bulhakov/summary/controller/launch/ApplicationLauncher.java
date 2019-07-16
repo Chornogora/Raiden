@@ -27,6 +27,7 @@ public class ApplicationLauncher implements Launcher{
             DatabaseLauncher.getInstance().config(root);
             ResourceLauncher.getInstance().config(root);
             SocketLauncher.getInstance().config(root);
+            EmailLauncher.getInstance().config(root);
         }catch(LaunchException e){
             throw new RuntimeLaunchException("Can't launch program", e);
         }

@@ -128,7 +128,7 @@
         <span>
             <summary:print>If you want to order our services, go to page</summary:print>
         </span>
-        <a href="/Raiden_war/client/contacts" id="contactLink">
+        <a href="/Raiden_war/pages/Client/Contacts.jsp" id="contactLink">
             <summary:print>contacts</summary:print>
         </a>
     </div>
