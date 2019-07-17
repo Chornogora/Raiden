@@ -24,22 +24,7 @@
 
     </div>
 
-    <header>
-        <a class="panelLink" href="/Raiden_war/">
-            <summary:print>About Us</summary:print>
-        </a>
-        <a class="panelLink" href="/Raiden_war/Client/services">
-            <summary:print>Services</summary:print>
-        </a>
-        <a class="panelLink" href="/Raiden_war/pages/Client/News.jsp">
-            <summary:print>News</summary:print>
-        </a>
-        <a class="panelLink" href="/Raiden_war/pages/Client/Contacts.jsp">
-            <summary:print>Contacts</summary:print>
-        </a>
-        <a class = "language" onclick="changeLocale('en')">En</a>
-        <a class = "language" onclick="changeLocale('ru')">Ru</a>
-    </header>
+    <%@include file="../../WEB-INF/jspf/header.jspf"%>
 
     <article style="overflow-x: hidden">
         <h1><summary:print>Internet</summary:print></h1>
@@ -133,14 +118,7 @@
         </a>
     </div>
 
-    <footer>
-        <pre id="Copyright">
-            Copyright 2019 Raiden.com
-            <summary:print>All rights to any materials published on the site are protected in accordance with the Ukrainian and international</summary:print>
-            <summary:print>copyright and related rights. Any use of text, audio, photo and</summary:print>
-            <summary:print>video materials are possible only with the written permission of the publisher.</summary:print>
-        </pre>
-    </footer>
+    <%@include file="../../WEB-INF/jspf/footer.jspf"%>
 
 </body>
 </html>

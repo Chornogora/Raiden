@@ -2,8 +2,8 @@ package ua.nure.bulhakov.summary.controller.launch;
 
 import com.itextpdf.text.DocumentException;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.service.contract.Scheduler;
 import ua.nure.bulhakov.summary.service.document.PDFCreator;
+import ua.nure.bulhakov.summary.service.contract.Scheduler;
 
 /**
  * Main launcher, that calls other launchers and starts daily checking

@@ -2,8 +2,8 @@ package ua.nure.bulhakov.summary.service.administrator;
 
 import ua.nure.bulhakov.summary.database.AdministratorDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.model.Administrator;
 import ua.nure.bulhakov.summary.service.Authenticable;
+import ua.nure.bulhakov.summary.model.Administrator;
 
 public class Authentication implements Authenticable {
 

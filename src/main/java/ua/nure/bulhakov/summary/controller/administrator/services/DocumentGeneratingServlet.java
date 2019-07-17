@@ -2,8 +2,8 @@ package ua.nure.bulhakov.summary.controller.administrator.services;
 
 import com.itextpdf.text.DocumentException;
 import org.apache.log4j.Logger;
-import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.service.document.PDFCreator;
+import ua.nure.bulhakov.summary.database.DBException;
 
 import javax.servlet.http.HttpServlet;
 

@@ -3,8 +3,8 @@ package ua.nure.bulhakov.summary.controller.administrator.clients;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.service.administrator.ClientService;
+import ua.nure.bulhakov.summary.model.Client;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

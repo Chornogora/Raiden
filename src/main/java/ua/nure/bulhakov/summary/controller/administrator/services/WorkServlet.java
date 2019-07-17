@@ -1,9 +1,9 @@
 package ua.nure.bulhakov.summary.controller.administrator.services;
 
 import ua.nure.bulhakov.summary.database.DBException;
-import ua.nure.bulhakov.summary.model.Work;
 import ua.nure.bulhakov.summary.service.administrator.ServiceDropper;
 import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
+import ua.nure.bulhakov.summary.model.Work;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

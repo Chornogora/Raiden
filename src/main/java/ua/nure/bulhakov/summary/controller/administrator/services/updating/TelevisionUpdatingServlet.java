@@ -1,10 +1,10 @@
 package ua.nure.bulhakov.summary.controller.administrator.services.updating;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.service.administrator.ServiceUpdater;
 import ua.nure.bulhakov.summary.controller.administrator.services.DocumentGeneratingServlet;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Television;
-import ua.nure.bulhakov.summary.service.administrator.ServiceUpdater;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

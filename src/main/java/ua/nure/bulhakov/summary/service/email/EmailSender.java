@@ -1,5 +1,7 @@
 package ua.nure.bulhakov.summary.service.email;
 
+import ua.nure.bulhakov.summary.controller.launch.EmailLauncher;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -12,7 +14,7 @@ import java.util.Properties;
  * Class that is used to send email using current properties.
  * Is configured by foreign launcher
  * @author A.Bulhakov
- * @see ua.nure.bulhakov.summary.controller.launch.EmailLauncher
+ * @see EmailLauncher
  */
 public class EmailSender {
 

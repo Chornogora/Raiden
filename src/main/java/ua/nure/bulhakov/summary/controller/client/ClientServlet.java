@@ -1,11 +1,11 @@
 package ua.nure.bulhakov.summary.controller.client;
 
 import org.apache.log4j.Logger;
+import ua.nure.bulhakov.summary.service.client.ClientAuthentication;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.model.Contract;
 import ua.nure.bulhakov.summary.service.Authenticable;
-import ua.nure.bulhakov.summary.service.client.ClientAuthentication;
 import ua.nure.bulhakov.summary.service.contract.ContractService;
 
 import javax.servlet.ServletException;
