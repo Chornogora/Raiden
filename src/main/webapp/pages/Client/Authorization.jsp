@@ -49,13 +49,13 @@
             </div>
             <div id = "fields">
                 <label id="loginLabel">
-                    <summary:print>Number of any your contract: </summary:print>
+                    <summary:print>Number of any your contract</summary:print>:
                     <br/>
-                    <input type="number" name="login" id="contractNumber""/>
+                    <input type="number" name="login" id="contractNumber"/>
                 </label>
                 <br/>
                 <label id="passwordLabel">
-                    <summary:print>Your password: </summary:print>
+                    <summary:print>Your password</summary:print>:
                     <br/>
                     <input type="password" name="password" id="password" maxlength="20" minlength="8"/>
                 </label>

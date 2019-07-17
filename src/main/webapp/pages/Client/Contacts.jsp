@@ -18,6 +18,7 @@
     <span id="Raiden">
         Raiden
     </span>
+    <a id="cabinet" href="/Raiden_war/pages/Client/Authorization.jsp"><summary:print>Personal Cabinet</summary:print></a>
 </div>
 
 <div class="mainField">
@@ -42,7 +43,7 @@
 </header>
 
 <article style="overflow-x: hidden">
-    <span id="PhoneNumbers"><summary:print>You can call us by using these Phone Numbers:</summary:print></span>
+    <span id="PhoneNumbers"><summary:print>You can call us by using these phone numbers</summary:print>:</span>
     <div id="phones">
         <div id="Vodafone">
             <img src="/Raiden_war/images/Vodafone.png" alt="Vodafone" class="OperatorLogo"/>
@@ -54,7 +55,7 @@
             <span class="PhoneNumber">+38 (097) 980-25-87</span>
         </div>
     </div>
-    <span id="ChatText"><summary:print>Try to contact with us online: </summary:print></span>
+    <span id="ChatText"><summary:print>Try to contact with us online</summary:print>:</span>
     <div id = "ChatBox">
         <button id="Start" onclick="StartChat()"><summary:print>Begin Chat</summary:print></button>
         <img src="https://thumbs.gfycat.com/SkinnySeveralAsianlion-size_restricted.gif" alt="Waiting" id="Waiting" />

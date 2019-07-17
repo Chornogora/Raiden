@@ -5,6 +5,11 @@
 <html>
 <head>
     <title>Phone</title>
+    <style>
+    th:hover{
+        cursor: pointer;
+    }
+    </style>
     <script src="/Raiden_war/js/WorkplaceFrame/Phone.js"></script>
 </head>
     <body>

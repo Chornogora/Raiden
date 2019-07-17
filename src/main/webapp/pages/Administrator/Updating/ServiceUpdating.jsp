@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td>Price(₴):</td>
-            <td><input type="number" id="price" name="price" onchange="checkValue()" value="${param.price}"/></td>
+            <td><input type="number" id="price" name="price" onchange="checkValue()" min="0" step="0.01" value="${param.price}"/></td>
         </tr>
     </table>
     <input type="submit" value="Update" id="submit"/>

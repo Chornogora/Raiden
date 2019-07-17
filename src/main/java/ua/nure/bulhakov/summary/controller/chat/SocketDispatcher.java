@@ -6,6 +6,9 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.util.LinkedList;
 
+/**
+ *
+ */
 public class SocketDispatcher {
 
     //private static final Logger logger = Logger.getLogger(SocketDispatcher.class);
@@ -20,6 +23,10 @@ public class SocketDispatcher {
 
     }
 
+    /**
+     *
+     * @param name hostname e.g. localhost
+     */
     public static void init(String name){
         hostName = name;
         ports = new LinkedList<>();

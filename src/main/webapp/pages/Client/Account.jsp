@@ -40,13 +40,14 @@
 
 <article>
     <span id="presentAccount">
-       <summary:print>Your account:</summary:print> ${sessionScope.client.account} ₴
+       <summary:print>Your account</summary:print>: ${sessionScope.client.account} ₴
     </span>
     <br>
     <form action="/Raiden_war/client/account" method="POST">
         <label id="account">
             <summary:print>Top up account on</summary:print>
-            <input type="number" name="amount" id="amount"/>
+            <input type="number" name="amount" id="amount" minlength="1" value = "1" step="0.01"/>
+            ₴
         </label>
         <input id="submit" type="submit" value="<summary:print>Submit</summary:print>"/>
     </form>

@@ -13,7 +13,7 @@ function authorizeByContract(){
                 CustomAlert("Incorrect password");
                 break;
             case 400:
-                CustomAlert("Incorrect login");
+                CustomAlert("Incorrect contract number");
                 break;
             default:
                 CustomAlert("Server error");

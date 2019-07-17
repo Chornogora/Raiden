@@ -6,6 +6,11 @@
 <head>
     <title>Television</title>
     <script src="/Raiden_war/js/WorkplaceFrame/Television.js"></script>
+    <style>
+        th:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <table border="2">

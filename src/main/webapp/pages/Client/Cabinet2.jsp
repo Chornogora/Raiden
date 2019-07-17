@@ -61,7 +61,7 @@
                             ${service.name},
                         </c:forEach>
                     </td>
-                    <td>${contract.monthPrice}</td>
+                    <td>${contract.monthPrice} ₴</td>
                 </tr>
             </c:forEach>
         </table>

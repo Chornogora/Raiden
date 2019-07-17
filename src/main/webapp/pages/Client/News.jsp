@@ -45,23 +45,27 @@
     <br>
     <img src="/Raiden_war/images/Money.png" alt="money" class="NewImage"/>
     <p class = "NewText">
-        <summary:print>Since July 1, the “Subscription fee in half” campaign has become available for all new subscribers of “Raiden” - a 50% discount at 300 Mbit/s</summary:print>
+        <summary:print>
+            Since July 1, the "Subscription fee in half" campaign has become available for all new subscribers of "Raiden" - a 50% discount at 300 Mbit/s.
+        </summary:print>
     </p>
-    <a href="#" class = "link"><summary:print>Detailed>></summary:print></a>
+    <a href="#" class = "link"><summary:print>Detailed</summary:print>>></a>
     <hr/>
     <img src="/Raiden_war/images/Repair.png" alt="repair" class="NewImage"/>
     <p class = "NewText">
-        <summary:print>07/20/2019, from 06:00 to 09:00, work will be carried out to improve the Internet service. We apologize for any temporary inconvenience.
+        <summary:print>
+            07/20/2019, from 06:00 to 09:00, work will be carried out to improve the Internet service. We apologize for any temporary inconvenience.
         </summary:print>
     </p>
-    <a href="#" class = "link"><summary:print>Detailed>></summary:print></a>
+    <a href="#" class = "link"><summary:print>Detailed</summary:print>>></a>
     <hr/>
     <img src="/Raiden_war/images/TV.png" alt="TV" class="NewImage"/>
     <p class = "NewText">
-        <summary:print>From 01.09.2019, "Raiden" will begin to provide television services, which will allow to provide a comprehensive service "TV + Internet".
+        <summary:print>
+            From 01.09.2019, "Raiden" will begin to provide television services, which will allow to provide a comprehensive service "TV + Internet".
         </summary:print>
     </p>
-    <a href="#" class = "link"><summary:print>Detailed>></summary:print></a>
+    <a href="#" class = "link"><summary:print>Detailed</summary:print>>></a>
 </article>
 
 <footer>

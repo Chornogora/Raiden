@@ -11,7 +11,8 @@ public class ClientAuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        if(request.getSession().getAttribute("client") != null) {
+        String method = ((HttpServletRequest) servletRequest).getMethod().toLowerCase();
+        if(request.getSession().getAttribute("client") != null || method.equals("post")) {
             filterChain.doFilter(servletRequest, servletResponse);
         }else{
             ((HttpServletResponse) servletResponse).sendRedirect("/Raiden_war/pages/Client/Authorization.jsp");

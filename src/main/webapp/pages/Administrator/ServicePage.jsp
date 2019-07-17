@@ -6,6 +6,11 @@
 <head>
     <title>Service</title>
     <script src="/Raiden_war/js/WorkplaceFrame/Service.js"></script>
+    <style>
+        th:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <table border="2">

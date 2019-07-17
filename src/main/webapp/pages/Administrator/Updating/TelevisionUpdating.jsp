@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>Price per month(₴):</td>
-            <td><input type="number" id="price" name="price" onchange="checkValue()" value="${param.price}"/></td>
+            <td><input type="number" id="price" name="price" onchange="checkValue()" step="0.01" min="0" value="${param.price}"/></td>
         </tr>
     </table>
     <input type="submit" value="Update" id="submit"/>

@@ -5,6 +5,11 @@
 <html>
     <head>
         <title>Internet</title>
+        <style>
+            th:hover{
+                cursor: pointer;
+            }
+        </style>
         <script src="/Raiden_war/js/WorkplaceFrame/Internet.js"></script>
     </head>
     <body>
