@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * class that allows administrator to get clients, change their status or delete them
+ * @author A.Bulhakov
+ */
 @WebServlet("/administrator/client")
 public class ClientServlet extends HttpServlet {
 
@@ -42,7 +46,7 @@ public class ClientServlet extends HttpServlet {
         try{
             new ClientService().changeStatus(id, status);
         }catch (DBException e){
-            logger.error("Can't delete client");
+            logger.error("Can't change client's status");
             resp.sendError(500);
         }
     }

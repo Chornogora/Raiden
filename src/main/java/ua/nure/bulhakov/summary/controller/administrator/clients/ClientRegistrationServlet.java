@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class that allows administrator to register new user
+ * @author A.Bulhakov
+ */
 @WebServlet("/administrator/client/adding")
 public class ClientRegistrationServlet extends HttpServlet {
 

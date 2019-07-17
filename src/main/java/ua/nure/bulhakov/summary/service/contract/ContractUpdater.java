@@ -39,16 +39,12 @@ public class ContractUpdater {
     }
 
     private boolean updateContract(Client client, Contract contract) throws DBException{
-        if(contract.getControl().compareTo(new Date(System.currentTimeMillis())) > 0){
-            if(contract.getStatus() != Contract.STATUS.CONNECTED) {
-                contract.setStatus(Contract.STATUS.CONNECTED);
-                ContractDatabaseManager.getInstance().updateStatus(contract);
-            }
-            return true;
-        }
-        if(client.getStatus() != Client.STATUS.BLOCKED) {
-            if(contract.getMonthPrice() <= client.getAccount()){
-                contract.setStatus(Contract.STATUS.CONNECTED);
+        if(contract.getControl().compareTo(new Date(System.currentTimeMillis())) <= 0){
+            if(contract.getMonthPrice() <= client.getAccount()) {
+                if (contract.getStatus() != Contract.STATUS.CONNECTED) {
+                    contract.setStatus(Contract.STATUS.CONNECTED);
+                }
+
                 LocalDate date = LocalDate.now().plusMonths(1);
                 Date future = Date.from(date.atStartOfDay()
                         .atZone(ZoneId.systemDefault())
@@ -57,13 +53,13 @@ public class ContractUpdater {
                 client.setAccount(client.getAccount() - contract.getMonthPrice());
                 ContractDatabaseManager.getInstance().updateStatus(contract);
                 ClientDatabaseManager.getInstance().updateAccount(client.getAccount(), client.getId());
+
+                return true;
             }else{
                 contract.setStatus(Contract.STATUS.BLOCKED);
                 ContractDatabaseManager.getInstance().updateStatus(contract);
                 return false;
             }
-        }else{
-            return false;
         }
         return true;
     }

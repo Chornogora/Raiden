@@ -80,9 +80,10 @@ public class InternetDatabaseManager extends ServiceDatabaseManager {
 
             int serviceKey = insertService(connection, inet.getName());
             statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, serviceKey);
+
             statement.setInt(2, inet.getSpeed());
             statement.setDouble(3, inet.getMonthPrice());
+            statement.setInt(1, serviceKey);
             statement.execute();
 
             connection.commit();

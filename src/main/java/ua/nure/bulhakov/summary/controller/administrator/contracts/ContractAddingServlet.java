@@ -19,10 +19,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that allows to add contract successfully
+ * @author A.Bulhakov
+ */
 @WebServlet("/administrator/contract/adding")
 public class ContractAddingServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ContractAddingServlet.class);
 
+    /**
+     * Class that is used to get data from JSON
+     */
     private static class RequestContract{
         private int userId;
 
@@ -55,7 +62,7 @@ public class ContractAddingServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String contractString = req.getParameter("contract");
         RequestContract requestContract = new Gson().fromJson(contractString, RequestContract.class);
 

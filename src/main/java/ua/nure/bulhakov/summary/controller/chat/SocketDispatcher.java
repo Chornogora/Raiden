@@ -7,16 +7,26 @@ import java.net.ServerSocket;
 import java.util.LinkedList;
 
 /**
- *
+ * Static class that controls program ports
+ * @author A.Bulhakov
  */
 public class SocketDispatcher {
 
     //private static final Logger logger = Logger.getLogger(SocketDispatcher.class);
 
+    /**
+     * name from config, that is using to create Sockets
+     */
     private static String hostName;
 
+    /**
+     * list of free program ports
+     */
     private static LinkedList<Integer> ports;
 
+    /**
+     * list of busy program ports
+     */
     private static LinkedList<Integer> busyPorts;
 
     private SocketDispatcher(){
@@ -24,16 +34,15 @@ public class SocketDispatcher {
     }
 
     /**
-     *
+     * Setting hostname and filling ports array.
+     * This method is called from launcher
      * @param name hostname e.g. localhost
      */
     public static void init(String name){
         hostName = name;
         ports = new LinkedList<>();
         busyPorts = new LinkedList<>();
-        /**/
 
-        //<Checking port>
         for(int i = 1200; i < 65535; ++i) {
             try(ServerSocket ss = new ServerSocket()){
                 ss.bind(new InetSocketAddress(InetAddress.getByName(hostName), i), 1);
@@ -42,9 +51,14 @@ public class SocketDispatcher {
                 //Go to the next port
             }
         }
-        //</Checking port>
     }
 
+    /**
+     * Find's first empty port from list.
+     * Create new ChatSocket with hostname and this port.
+     * @return number of the first empty port or -1
+     * @see ChatSocket
+     */
     static int createChatSocket(){
         if(ports.isEmpty()){
             return -1;
@@ -56,6 +70,9 @@ public class SocketDispatcher {
         return port;
     }
 
+    /**
+     * @return number of the busy empty port or -1
+     */
     static int getChatPort(){
         if(busyPorts.isEmpty()){
             return -1;
@@ -64,6 +81,12 @@ public class SocketDispatcher {
 
     }
 
+    /**
+     * Adds port to the list of free ports.
+     * Method is called when ChatSocket is closing
+     * @param port that should be free
+     * @see ChatSocket
+     */
     static void freePort(int port){
         ports.addLast(port);
         busyPorts.remove((Integer)port);

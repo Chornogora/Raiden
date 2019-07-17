@@ -1,8 +1,15 @@
 let webSocket;
 
-window.onload=()=>Connect();
+window.onload=()=>{
+    let request = new XMLHttpRequest();
+    request.open("GET", "/Raiden_war/address", true);
+    request.onload=()=>{
+        Connect(request.response);
+    };
+    request.send();
+};
 
-function Connect(){
+function Connect(host){
     let request = new XMLHttpRequest();
     request.open("GET", "/Raiden_war/chat", true);
 
@@ -17,7 +24,7 @@ function Connect(){
         }
 
         //TODO get localhost dynamic
-        webSocket = new WebSocket("ws://localhost:" + resp + "/point");
+        webSocket = new WebSocket("ws://"+host+":" + resp + "/point");
         webSocket.onmessage = function(evt) {
             if(evt.data === "SYSTEM: client left"){
                 let element = document.createElement("span");

@@ -6,13 +6,16 @@ import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.service.administrator.ClientService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Class that allows administrator to update user information
+ * @author A.Bulhakov
+ */
 @WebServlet("/administrator/client/updating")
 public class ClientUpdatingServlet extends HttpServlet {
 

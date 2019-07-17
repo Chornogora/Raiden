@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * class that allows to get all contracts or delete one of them
+ */
 @WebServlet("/administrator/contract")
 public class ContractServlet extends HttpServlet {
 

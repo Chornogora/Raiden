@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * class that allows administrator to enter the system
+ * @author A.Bulhakov
+ */
 @WebServlet("/administrator/authorization")
 public class AuthorizationServlet extends HttpServlet {
 
