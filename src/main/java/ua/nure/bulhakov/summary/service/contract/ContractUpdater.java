@@ -11,6 +11,10 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Class that is used to update contracts and client accounts
+ * @author A.Bulhakov
+ */
 public class ContractUpdater {
 
     public void updateAll() throws DBException {

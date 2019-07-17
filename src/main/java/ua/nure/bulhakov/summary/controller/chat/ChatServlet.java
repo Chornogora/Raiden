@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * Class that allows users to get program port and connect to sockets
  * @author A.Bulhakov
  */
 @WebServlet("/chat")
@@ -17,7 +18,7 @@ public class ChatServlet extends HttpServlet {
      * Writes a number of port to administrator.
      * @param req servletRequest
      * @param resp servletResponse
-     * @throws IOException
+     * @throws IOException while using HttpServletResponse#getWriter()
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

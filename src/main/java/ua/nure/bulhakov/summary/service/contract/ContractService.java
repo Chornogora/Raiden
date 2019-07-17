@@ -8,6 +8,10 @@ import ua.nure.bulhakov.summary.model.Contract;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Class that is used to get, delete or add contract
+ * @author A.Bulhakov
+ */
 public class ContractService {
 
     public boolean addContract(Contract contract) throws DBException {

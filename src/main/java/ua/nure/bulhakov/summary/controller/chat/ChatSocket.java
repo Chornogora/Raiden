@@ -9,6 +9,7 @@ import java.net.InetSocketAddress;
 
 
 /**
+ * The main class for chatting. Is opening on a program port.
  * @author A.Bulhakov
  */
 @ServerEndpoint(value = "/point")

@@ -8,19 +8,40 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+/**
+ * Class that is used to send email using current properties.
+ * Is configured by foreign launcher
+ * @author A.Bulhakov
+ * @see ua.nure.bulhakov.summary.controller.launch.EmailLauncher
+ */
 public class EmailSender {
 
+    /**
+     * foreign smtp properties
+     */
     private static Properties properties;
 
+    /**
+     * sender email address
+     */
     private static String sender;
 
+    /**
+     * sender email password
+     */
     private static String password;
 
     private EmailSender(){
 
     }
 
-    public static String sendThroughRemote(String topic, String text, String recipient) throws EmailException {
+    /**
+     * @param topic topic of message
+     * @param text content of message
+     * @param recipient email address of recipient
+     * @throws EmailException when it's impossible to send message
+     */
+    static void sendThroughRemote(String topic, String text, String recipient) throws EmailException {
         try {
             Session session = Session.getDefaultInstance(properties);
             MimeMessage message = new MimeMessage(session);
@@ -34,9 +55,8 @@ public class EmailSender {
             tr.connect(sender, password);
             tr.sendMessage(message, message.getAllRecipients());
         }catch (MessagingException e2) {
-            throw new EmailException("MessagingException was thrown", e2);
+            throw new EmailException("Can't send email", e2);
         }
-        return "OK";
     }
 
     public static void setProperties(Properties properties) {

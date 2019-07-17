@@ -5,6 +5,10 @@ import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.service.contract.Scheduler;
 import ua.nure.bulhakov.summary.service.document.PDFCreator;
 
+/**
+ * Main launcher, that calls other launchers and starts daily checking
+ * @author A.Bulhakov
+ */
 public class ApplicationLauncher implements Launcher{
 
     private static ApplicationLauncher instance;

@@ -3,6 +3,10 @@ package ua.nure.bulhakov.summary.service.email;
 import ua.nure.bulhakov.summary.model.Client;
 import ua.nure.bulhakov.summary.model.Contract;
 
+/**
+ * class that is used to set content of email
+ * @author A.Bulhakov
+ */
 public class EmailService {
 
     private static final String REGISTRATION_MESSAGE = "?, you were successfully added " +
@@ -17,6 +21,10 @@ public class EmailService {
 
     private static final String CONTRACT_TOPIC = "New Raiden Contract";
 
+    /**
+     * @param client client that has already been registrated
+     * @return result of operation - was it successful
+     */
     public boolean sendRegistrationMessage(Client client){
         String message = getMessage(REGISTRATION_MESSAGE, client.getFullName(), client.getPassword());
         try {
@@ -27,6 +35,10 @@ public class EmailService {
         return true;
     }
 
+    /**
+     * @param contract contract that has already been created
+     * @return result of operation - was it successful
+     */
     public boolean sendNewContractMessage(Contract contract){
         String message = getMessage(CONTRACT_MESSAGE, contract.getClient().getFullName(), String.valueOf(contract.getId()));
         try {

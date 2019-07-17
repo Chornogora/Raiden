@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Class that is used to update database daily
+ * @author A.Bulhakov
+ */
 public class Scheduler {
 
     private static final Logger logger = Logger.getLogger(Scheduler.class);
@@ -26,7 +30,9 @@ public class Scheduler {
         return instance;
     }
 
-
+    /**
+     * Creates daily task to update Contracts and client's accounts
+     */
     public void start() {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {

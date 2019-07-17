@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Class that is used to create PDF document with services
+ * @author A.Bulhakov
+ */
 public class PDFCreator {
 
     private static PDFCreator instance;
@@ -30,6 +34,11 @@ public class PDFCreator {
         return instance;
     }
 
+    /**
+     * @param root root path of the application
+     * @throws DocumentException when can't create file successfully
+     * @throws DBException when gets services from database
+     */
     public void generateDocument(String root) throws DocumentException, DBException {
         Document document = new Document();
         FileOutputStream stream;
