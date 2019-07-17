@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import ua.nure.bulhakov.summary.database.ClientDatabaseManager;
 import ua.nure.bulhakov.summary.database.DBException;
 import ua.nure.bulhakov.summary.model.*;
-import ua.nure.bulhakov.summary.service.email.model.*;
 import ua.nure.bulhakov.summary.service.administrator.ClientService;
 import ua.nure.bulhakov.summary.service.administrator.ServiceGetter;
 import ua.nure.bulhakov.summary.service.contract.ContractService;

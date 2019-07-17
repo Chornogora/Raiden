@@ -17,7 +17,7 @@
     <tr>
         <th onclick="sortByName()">Name of Service</th>
         <th>Measure</th>
-        <th onclick="sortByPrice()">Price</th>
+        <th onclick="sortByPrice()">Price(₴)</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>

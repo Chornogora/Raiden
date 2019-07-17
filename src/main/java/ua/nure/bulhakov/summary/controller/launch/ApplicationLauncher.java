@@ -27,11 +27,11 @@ public class ApplicationLauncher implements Launcher{
     @Override
     public void config(String root){
         try {
-            LoggerLauncher.getInstance().config(root);
-            DatabaseLauncher.getInstance().config(root);
             ResourceLauncher.getInstance().config(root);
             SocketLauncher.getInstance().config(root);
             EmailLauncher.getInstance().config(root);
+            DatabaseLauncher.getInstance().config(root);
+            LoggerLauncher.getInstance().config(root);
         }catch(LaunchException e){
             throw new RuntimeLaunchException("Can't launch program", e);
         }

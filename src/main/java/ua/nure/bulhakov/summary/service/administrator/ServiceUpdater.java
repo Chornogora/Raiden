@@ -1,7 +1,6 @@
 package ua.nure.bulhakov.summary.service.administrator;
 
 import ua.nure.bulhakov.summary.database.*;
-import ua.nure.bulhakov.summary.service.email.database.*;
 import ua.nure.bulhakov.summary.model.Internet;
 import ua.nure.bulhakov.summary.model.PhoneConnection;
 import ua.nure.bulhakov.summary.model.Television;

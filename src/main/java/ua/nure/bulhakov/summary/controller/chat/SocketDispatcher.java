@@ -59,7 +59,7 @@ public class SocketDispatcher {
      * @return number of the first empty port or -1
      * @see ChatSocket
      */
-    static int createChatSocket(){
+    public static int createChatSocket(){
         if(ports.isEmpty()){
             return -1;
         }
@@ -73,7 +73,7 @@ public class SocketDispatcher {
     /**
      * @return number of the busy empty port or -1
      */
-    static int getChatPort(){
+    public static int getChatPort(){
         if(busyPorts.isEmpty()){
             return -1;
         }

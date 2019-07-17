@@ -25,8 +25,18 @@
     <url-pattern>/client</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>AdminPartFilter</filter-name>
+    <url-pattern>/Administrator</url-pattern>
+  </filter-mapping>
+
   <welcome-file-list>
     <welcome-file>pages/Client/MainPage.jsp</welcome-file>
   </welcome-file-list>
-  
+
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/WEB-INF/error.html</location>
+  </error-page>
+
 </web-app>
